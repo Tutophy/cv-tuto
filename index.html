@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bendaas Zine Eddine (Tuto) | Multidisciplinary AI Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #00b3ff;
+      --secondary-color: #00ffd5;
+      --accent-color: #ff00ff;
+      --dark-bg: #0f0f0f;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text-light: #ffffff;
+      --text-muted: #cccccc;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(145deg, var(--dark-bg), #1a1a1a);
+      color: var(--text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Particles Background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 50px;
+      background: rgba(15, 15, 15, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--transition-speed) ease;
+      transform: translateY(-100%);
+      animation: slideDown 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: all 0.5s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo i {
+      margin-right: 10px;
+      color: var(--secondary-color);
+      transition: transform 0.5s ease;
+    }
+
+    .logo:hover i {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all var(--transition-speed) ease;
+      position: relative;
+      padding: 5px 0;
+      display: block;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      transition: width var(--transition-speed) ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .lang-toggle {
+      background: none;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      transition: all var(--transition-speed) ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-toggle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: var(--primary-color);
+      z-index: -1;
+      transition: height 0.5s ease;
+    }
+
+    .lang-toggle:hover::before {
+      height: 100%;
+    }
+
+    .lang-toggle:hover {
+      background: var(--primary-color);
+      color: var(--dark-bg);
+      box-shadow: 0 0 15px rgba(0, 179, 255, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 1;
+      max-width: 800px;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeInUp 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--accent-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradient 5s ease infinite, pulse 3s ease infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 5px rgba(0, 179, 255, 0.3); }
+      50% { text-shadow: 0 0 20px rgba(0, 179, 255, 0.6), 0 0 30px rgba(0, 255, 213, 0.4); }
+      100% { text-shadow: 0 0 5px rgba(0, 179, 255, 0.3); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: var(--text-muted);
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 1s;
+      opacity: 0;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      color: var(--text-muted);
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 1.3s;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: 2px solid var(--primary-color);
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: 0.15em;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary-color) }
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark-bg);
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      animation: fadeIn 1s ease forwards, pulse 2s ease infinite;
+      animation-delay: 1.5s;
+      opacity: 0;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-100%);
+      transition: transform var(--transition-speed) ease;
+      z-index: -1;
+    }
+
+    .cta-button:hover::before {
+      transform: translateX(0);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.3), 0 0 30px rgba(0, 255, 213, 0.4);
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      transition: width 0.5s ease;
+    }
+
+    .section-title:hover::after {
+      width: 200px;
+    }
+
+    /* Biography Section */
+    .bio-container {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    .bio-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .bio-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      color: var(--text-muted);
+    }
+
+    .values-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .value-tag {
+      background: rgba(0, 179, 255, 0.2);
+      color: var(--primary-color);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      transform: scale(0.95);
+      opacity: 0;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .value-tag:nth-child(1) { animation-delay: 0.6s; }
+    .value-tag:nth-child(2) { animation-delay: 0.7s; }
+    .value-tag:nth-child(3) { animation-delay: 0.8s; }
+    .value-tag:nth-child(4) { animation-delay: 0.9s; }
+    .value-tag:nth-child(5) { animation-delay: 1.0s; }
+
+    @keyframes popIn {
+      0% { 
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+      }
+      100% { 
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .value-tag:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 179, 255, 0.3);
+    }
+
+    .value-tag i {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .value-tag:hover i {
+      transform: scale(1.2);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      perspective: 1000px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all var(--transition-speed) ease;
+      backdrop-filter: blur(10px);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(30px) rotateX(5deg);
+      opacity: 0;
+      transform-origin: center bottom;
+      animation: cardAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes cardAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) rotateX(5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+      }
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.3s; }
+    .project-card:nth-child(2) { animation-delay: 0.4s; }
+    .project-card:nth-child(3) { animation-delay: 0.5s; }
+    .project-card:nth-child(4) { animation-delay: 0.6s; }
+    .project-card:nth-child(5) { animation-delay: 0.7s; }
+    .project-card:nth-child(6) { animation-delay: 0.8s; }
+    .project-card:nth-child(7) { animation-delay: 0.9s; }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 179, 255, 0.3), 0 0 40px rgba(0, 255, 213, 0.2);
+      border-color: var(--primary-color);
+    }
+
+    .project-header {
+      padding: 25px 25px 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .project-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: var(--dark-bg);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .project-card:hover .project-icon {
+      transform: rotate(15deg) scale(1.1);
+      box-shadow: 0 0 15px rgba(0, 179, 255, 0.5);
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .project-content {
+      padding: 0 25px 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: rgba(0, 179, 255, 0.2);
+      color: var(--primary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0, 179, 255, 0.2);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .project-link {
+      color: var(--text-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color var(--transition-speed) ease;
+      position: relative;
+      overflow: hidden;
+      padding: 5px 0;
+    }
+
+    .project-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .project-link:hover::after {
+      width: 100%;
+    }
+
+    .project-link:hover {
+      color: var(--primary-color);
+    }
+
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .skill-category:nth-child(1) { animation-delay: 0.3s; }
+    .skill-category:nth-child(2) { animation-delay: 0.4s; }
+    .skill-category:nth-child(3) { animation-delay: 0.5s; }
+    .skill-category:nth-child(4) { animation-delay: 0.6s; }
+    .skill-category:nth-child(5) { animation-delay: 0.7s; }
+    .skill-category:nth-child(6) { animation-delay: 0.8s; }
+
+    .skill-category h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-item {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px 15px;
+      font-size: 0.9rem;
+      transition: all var(--transition-speed) ease;
+      transform: scale(0.95);
+      opacity: 0;
+      animation: popIn 0.5s ease forwards;
+    }
+
+    .skill-item:hover {
+      background: rgba(0, 179, 255, 0.2);
+      border-color: var(--primary-color);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 179, 255, 0.2);
+    }
+
+    /* Testimonials Section */
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-speed) ease;
+      transform: translateY(20px) rotate(1deg);
+      opacity: 0;
+      animation: cardAppear 0.8s ease forwards;
+    }
+
+    .testimonial-card:nth-child(1) { animation-delay: 0.3s; }
+    .testimonial-card:nth-child(2) { animation-delay: 0.4s; }
+    .testimonial-card:nth-child(3) { animation-delay: 0.5s; }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px) rotate(0deg);
+      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.2), 0 0 30px rgba(0, 255, 213, 0.1);
+      border-color: var(--primary-color);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .testimonial-card:hover .author-avatar {
+      transform: scale(1.1);
+    }
+
+    .author-info h4 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Timeline Section */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+      animation: drawLine 2s ease forwards;
+    }
+
+    @keyframes drawLine {
+      from { height: 0; }
+      to { height: 100%; }
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.8s ease forwards;
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.6s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.8s; }
+    .timeline-item:nth-child(4) { animation-delay: 1.0s; }
+    .timeline-item:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .timeline-content {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 25px;
+      width: calc(50% - 30px);
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-speed) ease;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-right: auto;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.2), 0 0 25px rgba(0, 255, 213, 0.1);
+      border-color: var(--primary-color);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      border: 4px solid var(--dark-bg);
+      z-index: 1;
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { box-shadow: 0 0 0 0 rgba(0, 179, 255, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 179, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 179, 255, 0); }
+    }
+
+    .timeline-date {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
+    .timeline-title {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+
+    .timeline-description {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    .contact-container {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .contact-item:nth-child(1) { animation-delay: 0.4s; }
+    .contact-item:nth-child(2) { animation-delay: 0.5s; }
+    .contact-item:nth-child(3) { animation-delay: 0.6s; }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      color: var(--primary-color);
+      transition: transform 0.5s ease;
+    }
+
+    .contact-item:hover i {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .contact-item p {
+      font-size: 1.1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--text-light);
+      font-size: 1.3rem;
+      transition: all var(--transition-speed) ease;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: popIn 0.5s ease forwards;
+    }
+
+    .social-link:nth-child(1) { animation-delay: 0.7s; }
+    .social-link:nth-child(2) { animation-delay: 0.8s; }
+    .social-link:nth-child(3) { animation-delay: 0.9s; }
+    .social-link:nth-child(4) { animation-delay: 1.0s; }
+    .social-link:nth-child(5) { animation-delay: 1.1s; }
+
+    .social-link:hover {
+      background: var(--primary-color);
+      color: var(--dark-bg);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 179, 255, 0.4);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.4s; }
+    .form-group:nth-child(2) { animation-delay: 0.5s; }
+    .form-group:nth-child(3) { animation-delay: 0.6s; }
+    .form-group:nth-child(4) { animation-delay: 0.7s; }
+
+    .form-control {
+      width: 100%;
+      padding: 15px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      color: var(--text-light);
+      font-family: 'Tajawal', sans-serif;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 10px rgba(0, 179, 255, 0.3), 0 0 20px rgba(0, 255, 213, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark-bg);
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.3), 0 0 30px rgba(0, 255, 213, 0.3);
+    }
+
+    .cv-download {
+      margin-top: 30px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .cv-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark-bg);
+      background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      text-decoration: none;
+    }
+
+    .cv-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3), 0 0 30px rgba(0, 179, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+      background: rgba(15, 15, 15, 0.8);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+      transition: all 0.5s ease;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: auto !important;
+      }
+
+      .timeline-dot {
+        left: 20px;
+      }
+    }
+
+    /* Arabic Language Styles */
+    html[lang="ar"] {
+      direction: rtl;
+    }
+
+    html[lang="ar"] .logo i {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+
+    html[lang="ar"] .nav-links li {
+      margin-left: 0;
+      margin-right: 25px;
+    }
+
+    html[lang="ar"] .nav-links a::after {
+      left: auto;
+      right: 0;
+    }
+
+    html[lang="ar"] .contact-item i {
+      margin-right: 0;
+      margin-left: 15px;
+    }
+
+    html[lang="ar"] .value-tag {
+      flex-direction: row-reverse;
+    }
+
+    html[lang="ar"] .timeline::before {
+      left: auto;
+      right: 50%;
+    }
+
+    html[lang="ar"] .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    html[lang="ar"] .timeline-item:nth-child(even) .timeline-content {
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    html[lang="ar"] .timeline-dot {
+      left: auto;
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    html[lang="ar"] .section-title::after {
+      left: auto;
+      right: 50%;
+      transform: translateX(50%);
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="logo">
+      <i class="fas fa-brain"></i>
+      Tuto
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+      <li><a href="#bio" data-en="Biography" data-ar="السيرة">Biography</a></li>
+      <li><a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a></li>
+      <li><a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a></li>
+      <li><a href="#testimonials" data-en="Testimonials" data-ar="التوصيات">Testimonials</a></li>
+      <li><a href="#timeline" data-en="Timeline" data-ar="الجدول الزمني">Timeline</a></li>
+      <li><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" onclick="toggleLanguage()">العربية</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title" data-en="Bendaas Zine Eddine (Tuto)" data-ar="بندعاس زين الدين (Tuto)">Bendaas Zine Eddine (Tuto)</h1>
+      <h2 class="hero-subtitle" data-en="Future Maker | Multidisciplinary Entrepreneur | Smart Solutions Engineer" data-ar="صانع المستقبل | ريادي متعدد التخصصات | مهندس حلول ذكية">Future Maker | Multidisciplinary Entrepreneur | Smart Solutions Engineer</h2>
+      <p class="hero-description typewriter" data-en="I build intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, and technological design in Algeria and the Arab world." data-ar="أبني منظومات ذكية ومستدامة تربط بين التعليم الرقمي والذكاء الاصطناعي وريادة الأعمال والتصميم التكنولوجي في الجزائر والعالم العربي.">I build intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, and technological design in Algeria and the Arab world.</p>
+      <a href="#contact" class="cta-button" data-en="Contact Me" data-ar="تواصل معي">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- Biography Section -->
+  <section id="bio" class="section">
+    <h2 class="section-title" data-en="Who is Tuto?" data-ar="من هو Tuto؟">Who is Tuto?</h2>
+    <div class="bio-container">
+      <div class="bio-content">
+        <h3 style="font-size: 1.8rem; margin-bottom: 20px;" data-en="Bendaas Zine Eddine (Tuto)" data-ar="بندعاس زين الدين (Tuto)">Bendaas Zine Eddine (Tuto)</h3>
+        <p class="bio-text" data-en="An ambitious Algerian youth, multidisciplinary, and high-level initiator. Born with an entrepreneurial and technological spirit, seeking to make a tangible impact in education, technology, creative industry, and community development in Algeria and the Arab world." data-ar="شاب جزائري طموح، متعدد التخصصات، ومبادر من الطراز العالي. وُلد بروح ريادية وتكنولوجية، يسعى لإحداث أثر ملموس في التعليم، التكنولوجيا، الصناعة الإبداعية، والتنمية المجتمعية في الجزائر والعالم العربي.">An ambitious Algerian youth, multidisciplinary, and high-level initiator. Born with an entrepreneurial and technological spirit, seeking to make a tangible impact in education, technology, creative industry, and community development in Algeria and the Arab world.</p>
+        <p class="bio-text" data-en="He has a deep vision for building intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, technological design and development, creative economy, and smart industry and services. He currently works on several strategic projects and is considered a rising reference in developing integrated solutions combining technology and social innovation, with a true drive for change." data-ar="يمتلك رؤية عميقة لبناء منظومات ذكية ومستدامة تربط بين التعليم الرقمي، الذكاء الاصطناعي، ريادة الأعمال، التصميم والتطوير التكنولوجي، الاقتصاد الإبداعي، والصناعة والخدمات الذكية. يعمل حاليًا على عدة مشاريع استراتيجية، ويُعد مرجعًا صاعدًا في تطوير حلول متكاملة تجمع بين التكنولوجيا والابتكار الاجتماعي، بدافع حقيقي للتغيير.">He has a deep vision for building intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, technological design and development, creative economy, and smart industry and services. He currently works on several strategic projects and is considered a rising reference in developing integrated solutions combining technology and social innovation, with a true drive for change.</p>
+        <div class="values-container">
+          <div class="value-tag">
+            <i class="fas fa-lightbulb"></i>
+            <span data-en="Innovation" data-ar="الابتكار">Innovation</span>
+          </div>
+          <div class="value-tag">
+            <i class="fas fa-book"></i>
+            <span data-en="Learning" data-ar="التعلم">Learning</span>
+          </div>
+          <div class="value-tag">
+            <i class="fas fa-bullseye"></i>
+            <span data-en="Impact" data-ar="التأثير">Impact</span>
+          </div>
+          <div class="value-tag">
+            <i class="fas fa-users"></i>
+            <span data-en="Collaboration" data-ar="التعاون">Collaboration</span>
+          </div>
+          <div class="value-tag">
+            <i class="fas fa-rocket"></i>
+            <span data-en="Entrepreneurship" data-ar="ريادة الأعمال">Entrepreneurship</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <h2 class="section-title" data-en="Projects & Ventures" data-ar="المشاريع والمبادرات">Projects & Ventures</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-car"></i>
+          </div>
+          <h3 class="project-title" data-en="IL Motors" data-ar="IL Motors">IL Motors</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="A bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market. Includes three main models: IL-City (urban car), IL-Family (family car), and IL-Falcon 500 (luxury sports model)." data-ar="مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية. يشمل ثلاثة نماذج رئيسية: IL-City (سيارة حضرية)، IL-Family (سيارة عائلية)، و IL-Falcon 500 (طراز فاخر رياضي).">A bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market. Includes three main models: IL-City (urban car), IL-Family (family car), and IL-Falcon 500 (luxury sports model).</p>
+          <div class="project-tags">
+            <span class="tag" data-en="Manufacturing" data-ar="صناعة">Manufacturing</span>
+            <span class="tag" data-en="Electric Cars" data-ar="سيارات كهربائية">Electric Cars</span>
+            <span class="tag" data-en="AI" data-ar="ذكاء اصطناعي">AI</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-en="Details" data-ar="تفاصيل">Details</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="project-title" data-en="Infiteach" data-ar="Infiteach">Infiteach</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="A smart digital educational platform including support lessons for students of all levels, professional courses for teachers and training centers, and an intelligent bot named 'Noor' that works as a personal academic assistant. Built using Firebase, Google Sheets, and ChatGPT integrations." data-ar="منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ من جميع الأطوار، ودورات مهنية للأساتذة ومراكز التكوين، وبوت ذكي باسم 'نور' يعمل كمساعد دراسي شخصي. مبنية باستخدام Firebase و Google Sheets وتكاملات ChatGPT.">A smart digital educational platform including support lessons for students of all levels, professional courses for teachers and training centers, and an intelligent bot named 'Noor' that works as a personal academic assistant. Built using Firebase, Google Sheets, and ChatGPT integrations.</p>
+          <div class="project-tags">
+            <span class="tag" data-en="Education" data-ar="تعليم">Education</span>
+            <span class="tag" data-en="AI" data-ar="ذكاء اصطناعي">AI</span>
+            <span class="tag" data-en="Digital Platform" data-ar="منصة رقمية">Digital Platform</span>
+          </div>
+          <div class="project-links">
+            <a href="https://tutophy.github.io/infitech/" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-en="Website" data-ar="الموقع">Website</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="project-title" data-en="SYNAPSE" data-ar="SYNAPSE">SYNAPSE</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="A multidisciplinary scientific club created inside the CLS Batna, bringing together students and researchers in artificial intelligence, medicine, chemistry, economics, electronics, animal science, and art and design." data-ar="نادي علمي متعدد التخصصات تم إنشاؤه داخل المركز العلمي الترفيهي باتنة، يجمع الطلبة والباحثين في الذكاء الاصطناعي، الطب، الكيمياء، الاقتصاد، الإلكترونيات، علم الحيوان، والفن والتصميم.">A multidisciplinary scientific club created inside the CLS Batna, bringing together students and researchers in artificial intelligence, medicine, chemistry, economics, electronics, animal science, and art and design.</p>
+          <div class="project-tags">
+            <span class="tag" data-en="Sciences" data-ar="علوم">Sciences</span>
+            <span class="tag" data-en="Research" data-ar="بحث">Research</span>
+            <span class="tag" data-en="Education" data-ar="تعليم">Education</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-en="Website" data-ar="الموقع">Website</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-camera"></i>
+          </div>
+          <h3 class="project-title" data-en="Snap_Life.05" data-ar="Snap_Life.05">Snap_Life.05</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="A personal brand in photography and visual storytelling. Offers short-form content, studio sessions, and digital branding. Supervised by photographer 'Tarek' with professional training courses and field workshops." data-ar="علامة شخصية في مجال التصوير الفوتوغرافي والسرد البصري. تقدم محتوى قصير الشكل وجلسات استوديو والعلامات التجارية الرقمية. يشرف عليها المصور 'طارق' مع دورات تدريبية مهنية وورشات ميدانية.">A personal brand in photography and visual storytelling. Offers short-form content, studio sessions, and digital branding. Supervised by photographer 'Tarek' with professional training courses and field workshops.</p>
+          <div class="project-tags">
+            <span class="tag" data-en="Photography" data-ar="تصوير">Photography</span>
+            <span class="tag" data-en="Creativity" data-ar="إبداع">Creativity</span>
+            <span class="tag" data-en="Content" data-ar="محتوى">Content</span>
+          </div>
+          <div class="project-links">
+            <a href="https://www.instagram.com/snap_life.05/" class="project-link">
+              <i class="fab fa-instagram"></i>
+              <span data-en="Instagram" data-ar="انستغرام">Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-infinity"></i>
+          </div>
+          <h3 class="project-title" data-en="INFINITELOGIC" data-ar="INFINITELOGIC">INFINITELOGIC</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="An Algerian youth team under my leadership, offering professional services in creative presentations, graphic and motion design, website and system development, smart marketing and educational content preparation, and market analysis." data-ar="فريق شبابي جزائري تحت قيادتي، يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم الجرافيكي والموشن، تطوير المواقع والأنظمة، إعداد محتوى تسويقي وتربوي ذكي، والتحليل السوقي.">An Algerian youth team under my leadership, offering professional services in creative presentations, graphic and motion design, website and system development, smart marketing and educational content preparation, and market analysis.</p>
+          <div class="project-tags">
+            <span class="tag" data-en="Design" data-ar="تصميم">Design</span>
+            <span class="tag" data-en="Development" data-ar="تطوير">Development</span>
+            <span class="tag" data-en="Marketing" data-ar="تسويق">Marketing</span>
+          </div>
+          <div class="project-links">
+            <a href="https://tutophy.github.io/website/" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-en="Website" data-ar="الموقع">Website</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3 class="project-title" data-en="Quadra Hotel Case" data-ar="قضية فندق كوادرا">Quadra Hotel Case</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="An interactive mystery investigation game, blending detective novels, virtual reality, and experimental design. Set in Algeria, containing real documents, physical evidence (USB, photos), and encrypted puzzles." data-ar="لعبة تحقيق تفاعلية غامضة، تمزج بين الرواية البوليسية، الواقع الافتراضي، والتصميم التجريبي. تدور أحداثها في الجزائر، وتحتوي على وثائق حقيقية، أدلة مادية (USB، صور)، وألغاز مشفّرة.">An interactive mystery investigation game, blending detective novels, virtual reality, and experimental design. Set in Algeria, containing real documents, physical evidence (USB, photos), and encrypted puzzles.</p>
+          <div class="project-tags">
+            <span class="tag" data-en="Game" data-ar="لعبة">Game</span>
+            <span class="tag" data-en="Interactive" data-ar="تفاعلية">Interactive</span>
+            <span class="tag" data-en="Creativity" data-ar="إبداع">Creativity</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-en="Experience" data-ar="تجربة">Experience</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="project-title" data-en="Noor Bot" data-ar="Noor Bot">Noor Bot</h3>
+        </div>
+        <div class="project-content">
+          <p class="project-description" data-en="An intelligent academic assistant designed for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations to align with official curricula. Offers immediate personal support to students according to the official Algerian program." data-ar="مساعد أكاديمي ذكي مصمم لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek لمواءمة المناهج الرسمية. يقدم دعمًا شخصيًا فوريًا للتلاميذ حسب البرنامج الرسمي الجزائري.">An intelligent academic assistant designed for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations to align with official curricula. Offers immediate personal support to students according to the official Algerian program.</p>
+          <div class="project-tags">
+            <span class="tag" data-en="AI" data-ar="ذكاء اصطناعي">AI</span>
+            <span class="tag" data-en="Education" data-ar="تعليم">Education</span>
+            <span class="tag" data-en="Telegram" data-ar="تلغرام">Telegram</span>
+          </div>
+          <div class="project-links">
+            <a href="https://tutophy.github.io/infitech/" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              <span data-en="Website" data-ar="الموقع">Website</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <h2 class="section-title" data-en="Core Skills" data-ar="المهارات الأساسية">Core Skills</h2>
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3><i class="fas fa-brain"></i> <span data-en="AI & Platforms" data-ar="الذكاء الاصطناعي والمنصات">AI & Platforms</span></h3>
+        <div class="skill-list">
+          <div class="skill-item">ChatGPT</div>
+          <div class="skill-item">Gemini</div>
+          <div class="skill-item">DeepSeek</div>
+          <div class="skill-item">Claude</div>
+          <div class="skill-item">Firebase</div>
+          <div class="skill-item">Google Sheets</div>
+          <div class="skill-item">Telegram Bots</div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3><i class="fas fa-code"></i> <span data-en="Development & Design" data-ar="تطوير وتصميم">Development & Design</span></h3>
+        <div class="skill-list">
+          <div class="skill-item">Python</div>
+          <div class="skill-item">JavaScript</div>
+          <div class="skill-item">HTML/CSS</div>
+          <div class="skill-item">Figma</div>
+          <div class="skill-item">Canva</div>
+          <div class="skill-item">Photoshop</div>
+          <div class="skill-item">Adobe Express</div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3><i class="fas fa-video"></i> <span data-en="Media & Content" data-ar="الإعلام والمحتوى">Media & Content</span></h3>
+        <div class="skill-list">
+          <div class="skill-item">DaVinci Resolve</div>
+          <div class="skill-item">CapCut</div>
+          <div class="skill-item">TikTok Creative Tools</div>
+          <div class="skill-item">Photography</div>
+          <div class="skill-item">Visual Storytelling</div>
+          <div class="skill-item">Art Direction</div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3><i class="fas fa-briefcase"></i> <span data-en="Management & Strategy" data-ar="إدارة واستراتيجية">Management & Strategy</span></h3>
+        <div class="skill-list">
+          <div class="skill-item">Team Leadership</div>
+          <div class="skill-item">Market Analysis</div>
+          <div class="skill-item">Brand Building</div>
+          <div class="skill-item">Strategic Planning</div>
+          <div class="skill-item">Project Management</div>
+          <div class="skill-item">Social Innovation</div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3><i class="fas fa-graduation-cap"></i> <span data-en="Education & Training" data-ar="التعليم والتكوين">Education & Training</span></h3>
+        <div class="skill-list">
+          <div class="skill-item">Educational Platforms</div>
+          <div class="skill-item">Content Design</div>
+          <div class="skill-item">Distance Learning</div>
+          <div class="skill-item">Educational Media</div>
+          <div class="skill-item">Performance Evaluation</div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3><i class="fas fa-microchip"></i> <span data-en="Technologies & Hardware" data-ar="تقنيات وأجهزة">Technologies & Hardware</span></h3>
+        <div class="skill-list">
+          <div class="skill-item">Arduino</div>
+          <div class="skill-item">IoT kits</div>
+          <div class="skill-item">Electronics</div>
+          <div class="skill-item">Robotics</div>
+          <div class="skill-item">Sensor Systems</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section">
+    <h2 class="section-title" data-en="Testimonials & Collaborations" data-ar="التوصيات والتعاونات">Testimonials & Collaborations</h2>
+    <div class="testimonials-container">
+      <div class="testimonial-card">
+        <p class="testimonial-text" data-en="Working with Zine was a transformative experience. His vision for AI and its applications in education inspired our entire team to rethink our approach." data-ar="العمل مع زين الدين كان تجربة محولة. رؤيته للذكاء الاصطناعي وتطبيقاته في التعليم ألهمت فريقنا بأكمله لإعادة التفكير في نهجنا.">Working with Zine was a transformative experience. His vision for AI and its applications in education inspired our entire team to rethink our approach.</p>
+        <div class="testimonial-author">
+          <div class="author-info">
+            <h4 data-en="Dr. Ahmed Mohammed" data-ar="د. أحمد محمد">Dr. Ahmed Mohammed</h4>
+            <p data-en="Director of Digital Education Center" data-ar="مدير مركز التعليم الرقمي">Director of Digital Education Center</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text" data-en="Zine is not just a tech innovator, but an inspiring leader who combines deep knowledge with the ability to motivate others. His projects with IL Motors and Infiteach prove that." data-ar="زين الدين ليس فقط مبتكرًا تقنيًا، بل هو قائد ملهم يجمع بين المعرفة العميقة والقدرة على تحفيز الآخرين. مشاريعه مع IL Motors و Infiteach تثبت ذلك.">Zine is not just a tech innovator, but an inspiring leader who combines deep knowledge with the ability to motivate others. His projects with IL Motors and Infiteach prove that.</p>
+        <div class="testimonial-author">
+          <div class="author-info">
+            <h4 data-en="Sara Ben Ali" data-ar="سارة بن علي">Sara Ben Ali</h4>
+            <p data-en="Co-founder, INFINITELOGIC" data-ar="شريكة مؤسسة، INFINITELOGIC">Co-founder, INFINITELOGIC</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text" data-en="As a student in the SYNAPSE club, I learned from Zine how to apply scientific concepts to real-world problems. His teaching style makes complex things simple and interesting." data-ar="كطالبة في نادي SYNAPSE، تعلمت من زين الدين كيفية تطبيق المفاهيم العلمية في حل المشكلات الواقعية. أسلوبه في التعليم يجعل المعقد بسيطًا ومثيرًا للاهتمام.">As a student in the SYNAPSE club, I learned from Zine how to apply scientific concepts to real-world problems. His teaching style makes complex things simple and interesting.</p>
+        <div class="testimonial-author">
+          <div class="author-info">
+            <h4 data-en="soumia Khelifi" data-ar="سومية خليفي">soumia Khelifi</h4>
+            <p data-en="Student, SYNAPSE Club" data-ar="طالبة، نادي SYNAPSE">Student, SYNAPSE Club</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline" class="section">
+    <h2 class="section-title" data-en="Timeline" data-ar="الجدول الزمني">Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2025</div>
+          <h3 class="timeline-title" data-en="Founding SYNAPSE Club" data-ar="تأسيس نادي SYNAPSE">Founding SYNAPSE Club</h3>
+          <p class="timeline-description" data-en="Founding a multidisciplinary scientific club inside the CLS Batna to bring together students and researchers in various scientific fields." data-ar="تأسيس نادي علمي متعدد التخصصات داخل المركز العلمي الترفيهي باتنة لجمع الطلبة والباحثين في مجالات علمية متنوعة.">Founding a multidisciplinary scientific club inside the CLS Batna to bring together students and researchers in various scientific fields.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2024</div>
+          <h3 class="timeline-title" data-en="Developing Noor Bot" data-en="تطوير Noor Bot">Developing Noor Bot</h3>
+          <p class="timeline-description" data-en="Developing an intelligent academic assistant for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations." data-ar="تطوير مساعد أكاديمي ذكي لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek.">Developing an intelligent academic assistant for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2023</div>
+          <h3 class="timeline-title" data-en="Launch of Infiteach" data-ar="إطلاق Infiteach">Launch of Infiteach</h3>
+          <p class="timeline-description" data-en="Launching a smart digital educational platform including support lessons for students and professional courses for teachers and an intelligent bot named 'Noor'." data-ar="إطلاق منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ ودورات مهنية للأساتذة وبوت ذكي باسم 'نور'.">Launching a smart digital educational platform including support lessons for students and professional courses for teachers and an intelligent bot named 'Noor'.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2022</div>
+          <h3 class="timeline-title" data-en="Founding INFINITELOGIC" data-ar="تأسيس INFINITELOGIC">Founding INFINITELOGIC</h3>
+          <p class="timeline-description" data-en="Establishing an Algerian youth team offering professional services in creative presentations, design, development, and smart marketing solutions." data-ar="تأسيس فريق شبابي جزائري يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم، التطوير، وحلول التسويق الذكية.">Establishing an Algerian youth team offering professional services in creative presentations, design, development, and smart marketing solutions.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2021</div>
+          <h3 class="timeline-title" data-en="Launch of IL Motors" data-ar="إطلاق IL Motors">Launch of IL Motors</h3>
+          <p class="timeline-description" data-en="Launching a bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market." data-ar="إطلاق مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية.">Launching a bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2 class="section-title" data-en="Contact Me" data-ar="تواصل معي">Contact Me</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3 style="font-size: 1.5rem; margin-bottom: 30px;" data-en="Contact Information" data-ar="معلومات التواصل">Contact Information</h3>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <p>tutophy.ads@gmail.com</p>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <p>0696863424</p>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p data-en="Batna, Algeria" data-ar="باتنة، الجزائر">Batna, Algeria</p>
+        </div>
+        <div class="social-links">
+          <a href="https://instagram.com/tutophy" class="social-link" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@Tuto_live" class="social-link" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://github.com/Tutophy" class="social-link" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://t.me/tutophy" class="social-link" target="_blank">
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/bendaas-zin-eddine/" class="social-link" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+        
+        <div class="cv-download">
+          <a href="https://cvtuto.tiiny.site/" class="cv-button" data-en="Download CV" data-ar="تحميل السيرة الذاتية">
+            <i class="fas fa-download"></i>
+            <span data-en="Download CV" data-ar="تحميل السيرة الذاتية">Download CV</span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3 style="font-size: 1.5rem; margin-bottom: 30px;" data-en="Send Me a Message" data-ar="أرسل لي رسالة">Send Me a Message</h3>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" data-en-placeholder="Name" data-ar-placeholder="الاسم" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" data-en-placeholder="Email" data-ar-placeholder="البريد الإلكتروني" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" data-en-placeholder="Subject" data-ar-placeholder="الموضوع" placeholder="Subject">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" data-en-placeholder="Message" data-ar-placeholder="الرسالة" placeholder="Message"></textarea>
+          </div>
+          <button type="submit" class="submit-button" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-text" data-en="© 2025 Bendaas Zine Eddine (Tuto). All Rights Reserved" data-ar="© 2025 بندعاس زين الدين (Tuto). جميع الحقوق محفوظة">© 2025 Bendaas Zine Eddine (Tuto). All Rights Reserved</p>
+    <div class="footer-logo">Tuto</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Initialize Particles
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#00b3ff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00b3ff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Language Toggle
+    let currentLang = 'en';
+    
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      document.documentElement.lang = currentLang;
+      document.querySelector('.lang-toggle').textContent = currentLang === 'en' ? 'العربية' : 'EN';
+      
+      // Update all elements with data-en and data-ar attributes
+      document.querySelectorAll('[data-en]').forEach(element => {
+        const text = element.getAttribute(`data-${currentLang}`);
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+          element.placeholder = text;
+        } else {
+          element.textContent = text;
+        }
+      });
+    }
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Form Submission (Placeholder)
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const successMessage = currentLang === 'en' ? 'Thank you for your message! I will get back to you soon.' : 'شكراً لتواصلك! سيتم الرد عليك قريباً.';
+      alert(successMessage);
+      this.reset();
+    });
+
+    // Intersection Observer for section animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Animate skills when they come into view
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const skills = entry.target.querySelectorAll('.skill-item');
+          skills.forEach((skill, index) => {
+            skill.style.animationDelay = `${index * 0.1}s`;
+            skill.classList.add('visible');
+          });
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.skill-category').forEach(category => {
+      skillObserver.observe(category);
+    });
+
+    // Add Active Class to Navigation Links on Scroll
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('section');
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Initialize animations for footer
+    setTimeout(() => {
+      document.querySelector('footer').style.animation = 'fadeIn 1s ease forwards';
+    }, 500);
+  </script>
+</body>
+</html>
