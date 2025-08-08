@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bendaas Zine Eddine (Tuto) | Multidisciplinary AI Specialist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Tajawal:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>بندعاس زين الدين (Tuto) | متخصص متعدد التخصصات في الذكاء الاصطناعي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
     :root {
       --primary-color: #00b3ff;
@@ -16,20 +17,27 @@
       --text-light: #ffffff;
       --text-muted: #cccccc;
       --transition-speed: 0.3s;
+      --section-padding: 80px 5vw;
+      --border-radius: 16px;
+      --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
-      font-family: 'Poppins', 'Tajawal', sans-serif;
+      font-family: 'Almarai', sans-serif;
       background: linear-gradient(145deg, var(--dark-bg), #1a1a1a);
       color: var(--text-light);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      direction: rtl;
     }
+
     /* Particles Background */
     #particles-js {
       position: fixed;
@@ -39,14 +47,15 @@
       left: 0;
       z-index: -1;
     }
+
     /* Navigation */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 15px 50px;
-      background: rgba(15, 15, 15, 0.8);
-      backdrop-filter: blur(10px);
+      padding: 15px 5vw;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(15px);
       z-index: 1000;
       display: flex;
       justify-content: space-between;
@@ -55,11 +64,14 @@
       transform: translateY(-100%);
       animation: slideDown 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
       animation-delay: 0.3s;
+      border-bottom: 1px solid rgba(0, 179, 255, 0.2);
     }
+
     @keyframes slideDown {
       from { transform: translateY(-100%); }
       to { transform: translateY(0); }
     }
+
     .logo {
       font-family: 'Orbitron', sans-serif;
       font-size: 24px;
@@ -72,27 +84,34 @@
       display: flex;
       align-items: center;
       transition: all 0.5s ease;
+      z-index: 1001;
     }
+
     .logo:hover {
       transform: scale(1.05);
     }
+
     .logo i {
-      margin-right: 10px;
+      margin-left: 10px;
       color: var(--secondary-color);
       transition: transform 0.5s ease;
     }
+
     .logo:hover i {
       transform: rotate(360deg);
     }
+
     .nav-links {
       display: flex;
       list-style: none;
+      gap: 20px;
     }
+
     .nav-links li {
-      margin-left: 25px;
       position: relative;
       overflow: hidden;
     }
+
     .nav-links a {
       color: var(--text-light);
       text-decoration: none;
@@ -101,69 +120,142 @@
       position: relative;
       padding: 5px 0;
       display: block;
+      font-size: 1rem;
     }
+
     .nav-links a::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      right: 0;
       width: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
       transition: width var(--transition-speed) ease;
     }
+
     .nav-links a:hover::after {
       width: 100%;
     }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
     .lang-toggle {
       background: none;
       border: 1px solid var(--primary-color);
       color: var(--primary-color);
-      padding: 5px 15px;
-      border-radius: 20px;
+      padding: 8px 20px;
+      border-radius: 30px;
       cursor: pointer;
-      font-family: 'Poppins', 'Tajawal', sans-serif;
+      font-family: 'Almarai', sans-serif;
       transition: all var(--transition-speed) ease;
       position: relative;
       overflow: hidden;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+
     .lang-toggle::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       width: 100%;
       height: 0;
       background: var(--primary-color);
       z-index: -1;
       transition: height 0.5s ease;
     }
+
     .lang-toggle:hover::before {
       height: 100%;
     }
+
     .lang-toggle:hover {
       background: var(--primary-color);
       color: var(--dark-bg);
       box-shadow: 0 0 15px rgba(0, 179, 255, 0.5);
     }
+
+    /* Language Switcher Dropdown */
+    .lang-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .lang-dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(15px);
+      min-width: 120px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      z-index: 1002;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .lang-dropdown-content a {
+      color: var(--text-light);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .lang-dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .lang-dropdown-content a:hover {
+      background: rgba(0, 179, 255, 0.2);
+    }
+
+    .lang-dropdown:hover .lang-dropdown-content {
+      display: block;
+    }
+
+    .lang-dropdown-content .active {
+      background: rgba(0, 179, 255, 0.3);
+    }
+
     /* Hero Section */
     .hero {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 20px;
+      padding: 0 5vw;
       position: relative;
+      overflow: hidden;
     }
+
     .hero-content {
       text-align: center;
       z-index: 1;
-      max-width: 800px;
+      max-width: 1200px;
+      width: 100%;
       transform: translateY(50px);
       opacity: 0;
       animation: fadeInUp 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
       animation-delay: 0.5s;
+      padding: 20px;
     }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -174,6 +266,7 @@
         transform: translateY(0);
       }
     }
+
     .hero-title {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(2.5rem, 8vw, 5rem);
@@ -185,56 +278,60 @@
       color: transparent;
       animation: gradient 5s ease infinite, pulse 3s ease infinite;
       background-size: 200% auto;
+      line-height: 1.2;
     }
+
     @keyframes gradient {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
     @keyframes pulse {
       0% { text-shadow: 0 0 5px rgba(0, 179, 255, 0.3); }
       50% { text-shadow: 0 0 20px rgba(0, 179, 255, 0.6), 0 0 30px rgba(0, 255, 213, 0.4); }
       100% { text-shadow: 0 0 5px rgba(0, 179, 255, 0.3); }
     }
+
     .hero-subtitle {
-      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
       margin-bottom: 30px;
       color: var(--text-muted);
       animation: fadeIn 1.5s ease forwards;
       animation-delay: 1s;
       opacity: 0;
+      line-height: 1.4;
     }
+
     .hero-description {
-      font-size: clamp(1rem, 3vw, 1.1rem);
-      line-height: 1.6;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      line-height: 1.8;
       margin-bottom: 40px;
       color: var(--text-muted);
       animation: fadeIn 1.5s ease forwards;
       animation-delay: 1.3s;
       opacity: 0;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      padding: 0 10px;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    .typewriter {
-      overflow: hidden;
-      border-right: 2px solid var(--primary-color);
-      white-space: nowrap;
-      margin: 0 auto;
-      letter-spacing: 0.15em;
-      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: var(--primary-color) }
-    }
+
     .cta-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 15px 40px;
       font-size: 1.1rem;
       font-weight: 700;
@@ -251,43 +348,61 @@
       animation: fadeIn 1s ease forwards, pulse 2s ease infinite;
       animation-delay: 1.5s;
       opacity: 0;
+      min-width: 200px;
     }
+
+    .cta-button.secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--primary-color);
+    }
+
     .cta-button::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       width: 100%;
       height: 100%;
       background: rgba(255, 255, 255, 0.2);
-      transform: translateX(-100%);
+      transform: translateX(100%);
       transition: transform var(--transition-speed) ease;
       z-index: -1;
     }
+
     .cta-button:hover::before {
       transform: translateX(0);
     }
+
     .cta-button:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 179, 255, 0.3), 0 0 30px rgba(0, 255, 213, 0.4);
     }
+
+    .cta-button.secondary:hover {
+      background: rgba(0, 179, 255, 0.1);
+    }
+
     /* Section Styles */
     .section {
-      padding: 80px 20px;
-      max-width: 1200px;
+      padding: var(--section-padding);
+      max-width: 1400px;
       margin: 0 auto;
       opacity: 0;
       transform: translateY(50px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      position: relative;
     }
+
     .section.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     .section-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 5vw, 2.5rem);
-      margin-bottom: 50px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 60px;
       text-align: center;
       position: relative;
       display: inline-block;
@@ -297,20 +412,24 @@
       animation: fadeInUp 0.8s ease forwards;
       animation-delay: 0.2s;
     }
+
     .section-title::after {
       content: '';
       position: absolute;
       bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 50%;
+      transform: translateX(50%);
       width: 100px;
-      height: 3px;
+      height: 4px;
       background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
       transition: width 0.5s ease;
+      border-radius: 2px;
     }
+
     .section-title:hover::after {
       width: 200px;
     }
+
     /* Biography Section */
     .bio-container {
       display: flex;
@@ -322,42 +441,52 @@
       animation: fadeInUp 0.8s ease forwards;
       animation-delay: 0.4s;
     }
+
     .bio-content {
       flex: 1;
       min-width: 300px;
     }
+
     .bio-text {
       font-size: clamp(1rem, 2.5vw, 1.1rem);
       line-height: 1.8;
       margin-bottom: 30px;
       color: var(--text-muted);
+      text-align: justify;
     }
+
     .values-container {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
       margin-top: 30px;
+      justify-content: center;
     }
+
     .value-tag {
       background: rgba(0, 179, 255, 0.2);
       color: var(--primary-color);
-      padding: 8px 20px;
-      border-radius: 20px;
-      font-size: 0.9rem;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-size: 1rem;
       font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       transition: all 0.3s ease;
       transform: scale(0.95);
       opacity: 0;
       animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 179, 255, 0.3);
     }
+
     .value-tag:nth-child(1) { animation-delay: 0.6s; }
     .value-tag:nth-child(2) { animation-delay: 0.7s; }
     .value-tag:nth-child(3) { animation-delay: 0.8s; }
     .value-tag:nth-child(4) { animation-delay: 0.9s; }
     .value-tag:nth-child(5) { animation-delay: 1.0s; }
+
     @keyframes popIn {
       0% { 
         opacity: 0;
@@ -368,342 +497,442 @@
         transform: scale(1) translateY(0);
       }
     }
+
     .value-tag:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 179, 255, 0.3);
+      background: rgba(0, 179, 255, 0.3);
     }
+
     .value-tag i {
-      font-size: 1rem;
+      font-size: 1.2rem;
       transition: transform 0.3s ease;
     }
+
     .value-tag:hover i {
       transform: scale(1.2);
     }
+
     /* Projects Section */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-      perspective: 1000px;
+    .projects-container {
+      position: relative;
+      padding: 20px 0;
     }
+
+    .swiper {
+      width: 100%;
+      height: 500px;
+      padding: 30px 0;
+    }
+
     .project-card {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
+      border-radius: var(--border-radius);
       overflow: hidden;
       transition: all var(--transition-speed) ease;
       backdrop-filter: blur(10px);
       height: 100%;
       display: flex;
       flex-direction: column;
-      transform: translateY(30px) rotateX(5deg);
-      opacity: 0;
-      transform-origin: center bottom;
-      animation: cardAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      box-shadow: var(--box-shadow);
+      transform: scale(0.95);
+      opacity: 0.8;
     }
-    @keyframes cardAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) rotateX(5deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-      }
+
+    .swiper-slide-active .project-card {
+      transform: scale(1);
+      opacity: 1;
+      border-color: var(--primary-color);
+      box-shadow: 0 15px 40px rgba(0, 179, 255, 0.4);
     }
-    .project-card:nth-child(1) { animation-delay: 0.3s; }
-    .project-card:nth-child(2) { animation-delay: 0.4s; }
-    .project-card:nth-child(3) { animation-delay: 0.5s; }
-    .project-card:nth-child(4) { animation-delay: 0.6s; }
-    .project-card:nth-child(5) { animation-delay: 0.7s; }
-    .project-card:nth-child(6) { animation-delay: 0.8s; }
-    .project-card:nth-child(7) { animation-delay: 0.9s; }
+
     .project-card:hover {
-      transform: translateY(-10px) scale(1.02);
+      transform: translateY(-10px);
       box-shadow: 0 15px 30px rgba(0, 179, 255, 0.3), 0 0 40px rgba(0, 255, 213, 0.2);
       border-color: var(--primary-color);
     }
+
     .project-header {
-      padding: 25px 25px 15px;
+      padding: 25px;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .project-icon {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: var(--dark-bg);
       transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
+
     .project-card:hover .project-icon {
       transform: rotate(15deg) scale(1.1);
-      box-shadow: 0 0 15px rgba(0, 179, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 179, 255, 0.5);
     }
+
     .project-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 700;
+      flex: 1;
     }
+
     .project-content {
-      padding: 0 25px 25px;
+      padding: 25px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
+
     .project-description {
       color: var(--text-muted);
-      margin-bottom: 20px;
-      line-height: 1.6;
+      margin-bottom: 25px;
+      line-height: 1.7;
       flex-grow: 1;
+      font-size: 1.05rem;
     }
+
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 25px;
     }
+
     .tag {
       background: rgba(0, 179, 255, 0.2);
       color: var(--primary-color);
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
+      border: 1px solid rgba(0, 179, 255, 0.3);
     }
+
     .tag:hover {
       transform: translateY(-3px);
       box-shadow: 0 5px 10px rgba(0, 179, 255, 0.2);
+      background: rgba(0, 179, 255, 0.3);
     }
+
     .project-links {
       display: flex;
       gap: 15px;
+      margin-top: auto;
     }
+
     .project-link {
       color: var(--text-light);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
       transition: color var(--transition-speed) ease;
       position: relative;
       overflow: hidden;
       padding: 5px 0;
+      font-size: 1rem;
     }
+
     .project-link::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      right: 0;
       width: 0;
       height: 1px;
       background: var(--primary-color);
       transition: width 0.3s ease;
     }
+
     .project-link:hover::after {
       width: 100%;
     }
+
     .project-link:hover {
       color: var(--primary-color);
     }
+
     /* Skills Section */
     .skills-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 30px;
     }
+
     .skill-category {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+      border-radius: var(--border-radius);
       padding: 30px;
       backdrop-filter: blur(10px);
       transform: translateY(20px);
       opacity: 0;
       animation: fadeInUp 0.8s ease forwards;
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
     }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 179, 255, 0.3);
+      border-color: var(--primary-color);
+    }
+
     .skill-category:nth-child(1) { animation-delay: 0.3s; }
     .skill-category:nth-child(2) { animation-delay: 0.4s; }
     .skill-category:nth-child(3) { animation-delay: 0.5s; }
     .skill-category:nth-child(4) { animation-delay: 0.6s; }
     .skill-category:nth-child(5) { animation-delay: 0.7s; }
     .skill-category:nth-child(6) { animation-delay: 0.8s; }
+
     .skill-category h3 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.3rem;
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
       color: var(--primary-color);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
     }
+
+    .skill-category h3 i {
+      font-size: 1.8rem;
+    }
+
     .skill-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
+
     .skill-item {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 8px 15px;
-      font-size: 0.9rem;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 1rem;
       transition: all var(--transition-speed) ease;
       transform: scale(0.95);
       opacity: 0;
       animation: popIn 0.5s ease forwards;
     }
+
     .skill-item:hover {
       background: rgba(0, 179, 255, 0.2);
       border-color: var(--primary-color);
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 5px 15px rgba(0, 179, 255, 0.2);
     }
+
     /* Testimonials Section */
     .testimonials-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 30px;
     }
+
     .testimonial-card {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 25px;
+      border-radius: var(--border-radius);
+      padding: 30px;
       backdrop-filter: blur(10px);
       transition: all var(--transition-speed) ease;
-      transform: translateY(20px) rotate(1deg);
+      transform: translateY(20px);
       opacity: 0;
-      animation: cardAppear 0.8s ease forwards;
+      animation: fadeInUp 0.8s ease forwards;
+      box-shadow: var(--box-shadow);
     }
-    .testimonial-card:nth-child(1) { animation-delay: 0.3s; }
-    .testimonial-card:nth-child(2) { animation-delay: 0.4s; }
-    .testimonial-card:nth-child(3) { animation-delay: 0.5s; }
+
     .testimonial-card:hover {
-      transform: translateY(-5px) rotate(0deg);
-      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.2), 0 0 30px rgba(0, 255, 213, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 179, 255, 0.3);
       border-color: var(--primary-color);
     }
+
     .testimonial-text {
       font-style: italic;
-      margin-bottom: 20px;
-      line-height: 1.6;
+      margin-bottom: 25px;
+      line-height: 1.7;
       color: var(--text-muted);
+      font-size: 1.1rem;
+      position: relative;
+      padding-right: 20px;
     }
+
+    .testimonial-text::before {
+      content: """;
+      position: absolute;
+      top: -20px;
+      right: 0;
+      font-size: 4rem;
+      color: var(--primary-color);
+      opacity: 0.2;
+      font-family: serif;
+      line-height: 1;
+    }
+
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
     }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--dark-bg);
+      font-weight: bold;
+    }
+
     .author-info h4 {
-      font-size: 1rem;
+      font-size: 1.2rem;
       margin-bottom: 5px;
     }
+
     .author-info p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-muted);
     }
+
     /* Timeline Section */
     .timeline {
       position: relative;
-      padding: 20px 0;
+      padding: 20px 0 50px;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 0.8s ease forwards;
       animation-delay: 0.3s;
+      max-width: 1000px;
+      margin: 0 auto;
     }
+
     .timeline::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 50%;
-      width: 2px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 4px;
       height: 100%;
       background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
       animation: drawLine 2s ease forwards;
     }
+
     @keyframes drawLine {
       from { height: 0; }
       to { height: 100%; }
     }
+
     .timeline-item {
       position: relative;
-      margin-bottom: 50px;
+      margin-bottom: 70px;
       opacity: 0;
-      transform: translateX(-20px);
-      animation: fadeInRight 0.8s ease forwards;
+      transform: translateX(20px);
+      animation: fadeInLeft 0.8s ease forwards;
     }
+
     .timeline-item:nth-child(1) { animation-delay: 0.4s; }
     .timeline-item:nth-child(2) { animation-delay: 0.6s; }
     .timeline-item:nth-child(3) { animation-delay: 0.8s; }
     .timeline-item:nth-child(4) { animation-delay: 1.0s; }
     .timeline-item:nth-child(5) { animation-delay: 1.2s; }
-    @keyframes fadeInRight {
+
+    @keyframes fadeInLeft {
       from {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(20px);
       }
       to {
         opacity: 1;
         transform: translateX(0);
       }
     }
+
     .timeline-content {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 25px;
-      width: calc(50% - 30px);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      width: calc(50% - 40px);
       backdrop-filter: blur(10px);
       transition: all var(--transition-speed) ease;
+      box-shadow: var(--box-shadow);
     }
+
     .timeline-item:nth-child(odd) .timeline-content {
-      margin-left: auto;
-    }
-    .timeline-item:nth-child(even) .timeline-content {
       margin-right: auto;
     }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+    }
+
     .timeline-content:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.2), 0 0 25px rgba(0, 255, 213, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 179, 255, 0.3);
       border-color: var(--primary-color);
     }
+
     .timeline-dot {
       position: absolute;
-      top: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
+      top: 30px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 24px;
+      height: 24px;
       background: var(--primary-color);
       border-radius: 50%;
-      border: 4px solid var(--dark-bg);
+      border: 5px solid var(--dark-bg);
       z-index: 1;
       animation: pulseDot 2s infinite;
     }
+
     @keyframes pulseDot {
       0% { box-shadow: 0 0 0 0 rgba(0, 179, 255, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(0, 179, 255, 0); }
+      70% { box-shadow: 0 0 0 12px rgba(0, 179, 255, 0); }
       100% { box-shadow: 0 0 0 0 rgba(0, 179, 255, 0); }
     }
+
     .timeline-date {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       color: var(--secondary-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .timeline-date i {
+      font-size: 1.2rem;
+    }
+
+    .timeline-title {
+      font-size: 1.5rem;
       margin-bottom: 10px;
     }
-    .timeline-title {
-      font-size: 1.3rem;
-      margin-bottom: 5px;
-    }
+
     .timeline-description {
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
     }
+
     /* Contact Section */
     .contact-container {
       display: flex;
@@ -714,102 +943,124 @@
       animation: fadeInUp 0.8s ease forwards;
       animation-delay: 0.3s;
     }
+
     .contact-info {
       flex: 1;
       min-width: 300px;
     }
+
     .contact-form {
       flex: 1;
       min-width: 300px;
     }
+
     .contact-item {
       display: flex;
       align-items: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeInUp 0.5s ease forwards;
     }
+
     .contact-item:nth-child(1) { animation-delay: 0.4s; }
     .contact-item:nth-child(2) { animation-delay: 0.5s; }
     .contact-item:nth-child(3) { animation-delay: 0.6s; }
+
     .contact-item i {
-      font-size: 1.5rem;
-      margin-right: 15px;
+      font-size: 1.8rem;
+      margin-left: 20px;
       color: var(--primary-color);
       transition: transform 0.5s ease;
+      min-width: 40px;
+      text-align: center;
     }
+
     .contact-item:hover i {
       transform: scale(1.2) rotate(10deg);
     }
+
     .contact-item p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
+
     .social-links {
       display: flex;
       gap: 20px;
-      margin-top: 30px;
+      margin-top: 40px;
       flex-wrap: wrap;
     }
+
     .social-link {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       color: var(--text-light);
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       transition: all var(--transition-speed) ease;
       transform: scale(0.9);
       opacity: 0;
       animation: popIn 0.5s ease forwards;
+      box-shadow: var(--box-shadow);
     }
+
     .social-link:nth-child(1) { animation-delay: 0.7s; }
     .social-link:nth-child(2) { animation-delay: 0.8s; }
     .social-link:nth-child(3) { animation-delay: 0.9s; }
     .social-link:nth-child(4) { animation-delay: 1.0s; }
     .social-link:nth-child(5) { animation-delay: 1.1s; }
+
     .social-link:hover {
       background: var(--primary-color);
       color: var(--dark-bg);
       transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 5px 15px rgba(0, 179, 255, 0.4);
+      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.4);
     }
+
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeInUp 0.5s ease forwards;
     }
+
     .form-group:nth-child(1) { animation-delay: 0.4s; }
     .form-group:nth-child(2) { animation-delay: 0.5s; }
     .form-group:nth-child(3) { animation-delay: 0.6s; }
     .form-group:nth-child(4) { animation-delay: 0.7s; }
+
     .form-control {
       width: 100%;
-      padding: 15px;
+      padding: 18px;
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
+      border-radius: 10px;
       color: var(--text-light);
-      font-family: 'Poppins', 'Tajawal', sans-serif;
+      font-family: 'Almarai', sans-serif;
       transition: all var(--transition-speed) ease;
+      font-size: 1.1rem;
+      box-shadow: var(--box-shadow);
     }
+
     .form-control:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 10px rgba(0, 179, 255, 0.3), 0 0 20px rgba(0, 255, 213, 0.2);
+      box-shadow: 0 0 15px rgba(0, 179, 255, 0.4);
     }
+
     textarea.form-control {
-      min-height: 150px;
+      min-height: 180px;
       resize: vertical;
     }
+
     .submit-button {
-      padding: 15px 40px;
-      font-size: 1.1rem;
+      padding: 18px 40px;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--dark-bg);
       background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
@@ -822,25 +1073,29 @@
       transform: translateY(10px);
       animation: fadeInUp 0.5s ease forwards;
       animation-delay: 0.8s;
+      box-shadow: var(--box-shadow);
     }
+
     .submit-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 179, 255, 0.3), 0 0 30px rgba(0, 255, 213, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 179, 255, 0.4);
     }
+
     .cv-download {
-      margin-top: 30px;
+      margin-top: 40px;
       text-align: center;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeInUp 0.5s ease forwards;
       animation-delay: 1s;
     }
+
     .cv-button {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 15px 30px;
-      font-size: 1.1rem;
+      gap: 15px;
+      padding: 18px 40px;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--dark-bg);
       background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
@@ -849,14 +1104,17 @@
       cursor: pointer;
       transition: all var(--transition-speed) ease;
       text-decoration: none;
+      box-shadow: var(--box-shadow);
     }
+
     .cv-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3), 0 0 30px rgba(0, 179, 255, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 0, 255, 0.4);
     }
+
     /* Footer */
     footer {
-      padding: 30px 20px;
+      padding: 50px 5vw 30px;
       text-align: center;
       background: rgba(15, 15, 15, 0.8);
       backdrop-filter: blur(10px);
@@ -864,13 +1122,19 @@
       opacity: 0;
       animation: fadeIn 1s ease forwards;
     }
+
     .footer-text {
       color: var(--text-muted);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      line-height: 1.7;
     }
+
     .footer-logo {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 700;
       background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
       background-clip: text;
@@ -878,380 +1142,428 @@
       color: transparent;
       display: inline-block;
       transition: all 0.5s ease;
+      margin: 20px 0;
     }
+
     .footer-logo:hover {
       transform: scale(1.1);
     }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 30px;
+      opacity: 0.7;
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark-bg);
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 179, 255, 0.4);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 179, 255, 0.6);
+    }
+
     /* Responsive Design */
     @media (max-width: 1200px) {
-      .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      }
-      .skills-container {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      }
       .testimonials-container {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
     }
-    
+
     @media (max-width: 992px) {
-      .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      .timeline-content {
+        width: calc(100% - 60px);
       }
-      .skills-container {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-right: 0;
       }
-      .testimonials-container {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 0;
       }
     }
-    
+
     @media (max-width: 768px) {
-      nav {
-        padding: 15px 20px;
-        flex-wrap: wrap;
-      }
       .nav-links {
         display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 100vh;
+        background: rgba(15, 15, 15, 0.98);
+        flex-direction: column;
+        padding: 100px 30px 30px;
+        gap: 25px;
+        z-index: 999;
+        backdrop-filter: blur(10px);
+        transform: translateX(100%);
+        transition: transform 0.4s ease;
       }
-      .hero-title {
-        font-size: 2.5rem;
+      
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
       }
-      .timeline::before {
+      
+      .mobile-menu-btn {
+        display: block;
+        z-index: 1000;
+      }
+      
+      .lang-dropdown {
+        position: fixed;
+        bottom: 20px;
         left: 20px;
+        z-index: 1000;
       }
-      .timeline-content {
-        width: calc(100% - 50px);
-        margin-left: auto !important;
+      
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
       }
-      .timeline-dot {
-        left: 20px;
+      
+      .cta-button {
+        width: 100%;
       }
+      
       .contact-container {
         flex-direction: column;
+        gap: 50px;
       }
-    }
-    
-    @media (max-width: 576px) {
-      .section {
-        padding: 60px 15px;
-      }
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      .skills-container {
-        grid-template-columns: 1fr;
-      }
-      .testimonials-container {
-        grid-template-columns: 1fr;
-      }
-      .hero-title {
-        font-size: 2rem;
-      }
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
+      
       .bio-container {
         flex-direction: column;
       }
-      .values-container {
+      
+      .timeline::before {
+        right: 30px;
+      }
+      
+      .timeline-dot {
+        right: 30px;
+      }
+      
+      .section {
+        padding: 60px 5vw;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .testimonials-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .swiper {
+        height: 450px;
+      }
+      
+      .project-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .project-links {
         justify-content: center;
       }
+      
       .social-links {
         justify-content: center;
       }
-    }
-    
-    /* Language Styles */
-    html[lang="ar"] {
-      direction: rtl;
-    }
-    html[lang="ar"] body {
-      font-family: 'Tajawal', sans-serif;
-    }
-    html[lang="ar"] .logo i {
-      margin-right: 0;
-      margin-left: 10px;
-    }
-    html[lang="ar"] .nav-links li {
-      margin-left: 0;
-      margin-right: 25px;
-    }
-    html[lang="ar"] .nav-links a::after {
-      left: auto;
-      right: 0;
-    }
-    html[lang="ar"] .contact-item i {
-      margin-right: 0;
-      margin-left: 15px;
-    }
-    html[lang="ar"] .value-tag {
-      flex-direction: row-reverse;
-    }
-    html[lang="ar"] .timeline::before {
-      left: auto;
-      right: 50%;
-    }
-    html[lang="ar"] .timeline-item:nth-child(odd) .timeline-content {
-      margin-left: 0;
-      margin-right: auto;
-    }
-    html[lang="ar"] .timeline-item:nth-child(even) .timeline-content {
-      margin-right: 0;
-      margin-left: auto;
-    }
-    html[lang="ar"] .timeline-dot {
-      left: auto;
-      right: 50%;
-      transform: translateX(50%);
-    }
-    html[lang="ar"] .section-title::after {
-      left: auto;
-      right: 50%;
-      transform: translateX(50%);
-    }
-    
-    /* French Language Styles */
-    html[lang="fr"] body {
-      font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
 <body>
   <!-- Particles Background -->
   <div id="particles-js"></div>
+  
   <!-- Navigation -->
   <nav>
     <a href="#" class="logo">
       <i class="fas fa-brain"></i>
       Tuto
     </a>
+    
     <ul class="nav-links">
-      <li><a href="#home" data-en="Home" data-ar="الرئيسية" data-fr="Accueil">Home</a></li>
-      <li><a href="#bio" data-en="Biography" data-ar="السيرة" data-fr="Biographie">Biography</a></li>
-      <li><a href="#projects" data-en="Projects" data-ar="المشاريع" data-fr="Projets">Projects</a></li>
-      <li><a href="#skills" data-en="Skills" data-ar="المهارات" data-fr="Compétences">Skills</a></li>
-      <li><a href="#testimonials" data-en="Testimonials" data-ar="التوصيات" data-fr="Témoignages">Testimonials</a></li>
-      <li><a href="#timeline" data-en="Timeline" data-ar="الجدول الزمني" data-fr="Chronologie">Timeline</a></li>
-      <li><a href="#contact" data-en="Contact" data-ar="تواصل" data-fr="Contact">Contact</a></li>
+      <li><a href="#home" data-key="navHome">الرئيسية</a></li>
+      <li><a href="#bio" data-key="navBio">السيرة</a></li>
+      <li><a href="#projects" data-key="navProjects">المشاريع</a></li>
+      <li><a href="#skills" data-key="navSkills">المهارات</a></li>
+      <li><a href="#testimonials" data-key="navTestimonials">التوصيات</a></li>
+      <li><a href="#timeline" data-key="navTimeline">الجدول الزمني</a></li>
+      <li><a href="#contact" data-key="navContact">تواصل</a></li>
     </ul>
-    <button class="lang-toggle" onclick="toggleLanguage()">العربية</button>
+    
+    <div class="lang-dropdown">
+      <button class="lang-toggle">
+        <i class="fas fa-globe"></i>
+        <span id="current-lang">العربية</span>
+      </button>
+      <div class="lang-dropdown-content">
+        <a href="#" class="lang-option active" data-lang="ar">العربية</a>
+        <a href="#" class="lang-option" data-lang="en">English</a>
+        <a href="#" class="lang-option" data-lang="fr">Français</a>
+      </div>
+    </div>
+    
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
   </nav>
+  
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
-      <h1 class="hero-title" data-en="Bendaas Zine Eddine (Tuto)" data-ar="بندعاس زين الدين (Tuto)" data-fr="Bendaas Zine Eddine (Tuto)">Bendaas Zine Eddine (Tuto)</h1>
-      <h2 class="hero-subtitle" data-en="Future Maker | Multidisciplinary Entrepreneur | Smart Solutions Engineer" data-ar="صانع المستقبل | ريادي متعدد التخصصات | مهندس حلول ذكية" data-fr="Créateur d'avenir | Entrepreneur multidisciplinaire | Ingénieur en solutions intelligentes">Future Maker | Multidisciplinary Entrepreneur | Smart Solutions Engineer</h2>
-      <p class="hero-description typewriter" data-en="I build intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, and technological design in Algeria and the Arab world." data-ar="أبني منظومات ذكية ومستدامة تربط بين التعليم الرقمي والذكاء الاصطناعي وريادة الأعمال والتصميم التكنولوجي في الجزائر والعالم العربي." data-fr="Je construis des systèmes intelligents et durables reliant l'éducation numérique, l'intelligence artificielle, l'entrepreneuriat et la conception technologique en Algérie et dans le monde arabe.">I build intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, and technological design in Algeria and the Arab world.</p>
-      <a href="#contact" class="cta-button" data-en="Contact Me" data-ar="تواصل معي" data-fr="Contactez-moi">Contact Me</a>
+      <h1 class="hero-title" data-key="heroTitle">بندعاس زين الدين (Tuto)</h1>
+      <h2 class="hero-subtitle" data-key="heroSubtitle">صانع المستقبل | ريادي متعدد التخصصات | مهندس حلول ذكية</h2>
+      <p class="hero-description" data-key="heroDescription">أبني منظومات ذكية ومستدامة تربط بين التعليم الرقمي والذكاء الاصطناعي وريادة الأعمال والتصميم التكنولوجي في الجزائر والعالم العربي.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button" data-key="contactMe">تواصل معي</a>
+        <a href="#projects" class="cta-button secondary" data-key="exploreProjects">استكشف مشاريعي</a>
+      </div>
     </div>
   </section>
+  
   <!-- Biography Section -->
   <section id="bio" class="section">
-    <h2 class="section-title" data-en="Who is Tuto?" data-ar="من هو Tuto؟" data-fr="Qui est Tuto ?">Who is Tuto?</h2>
+    <h2 class="section-title" data-key="bioTitle">من هو Tuto؟</h2>
     <div class="bio-container">
       <div class="bio-content">
-        <h3 style="font-size: 1.8rem; margin-bottom: 20px;" data-en="Bendaas Zine Eddine (Tuto)" data-ar="بندعاس زين الدين (Tuto)" data-fr="Bendaas Zine Eddine (Tuto)">Bendaas Zine Eddine (Tuto)</h3>
-        <p class="bio-text" data-en="An ambitious Algerian youth, multidisciplinary, and high-level initiator. Born with an entrepreneurial and technological spirit, seeking to make a tangible impact in education, technology, creative industry, and community development in Algeria and the Arab world." data-ar="شاب جزائري طموح، متعدد التخصصات، ومبادر من الطراز العالي. وُلد بروح ريادية وتكنولوجية، يسعى لإحداث أثر ملموس في التعليم، التكنولوجيا، الصناعة الإبداعية، والتنمية المجتمعية في الجزائر والعالم العربي." data-fr="Un jeune algérien ambitieux, multidisciplinaire et initiateur de haut niveau. Né avec un esprit entrepreneurial et technologique, cherchant à avoir un impact tangible dans l'éducation, la technologie, l'industrie créative et le développement communautaire en Algérie et dans le monde arabe.">An ambitious Algerian youth, multidisciplinary, and high-level initiator. Born with an entrepreneurial and technological spirit, seeking to make a tangible impact in education, technology, creative industry, and community development in Algeria and the Arab world.</p>
-        <p class="bio-text" data-en="He has a deep vision for building intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, technological design and development, creative economy, and smart industry and services. He currently works on several strategic projects and is considered a rising reference in developing integrated solutions combining technology and social innovation, with a true drive for change." data-ar="يمتلك رؤية عميقة لبناء منظومات ذكية ومستدامة تربط بين التعليم الرقمي، الذكاء الاصطناعي، ريادة الأعمال، التصميم والتطوير التكنولوجي، الاقتصاد الإبداعي، والصناعة والخدمات الذكية. يعمل حاليًا على عدة مشاريع استراتيجية، ويُعد مرجعًا صاعدًا في تطوير حلول متكاملة تجمع بين التكنولوجيا والابتكار الاجتماعي، بدافع حقيقي للتغيير." data-fr="Il a une vision profonde pour construire des systèmes intelligents et durables reliant l'éducation numérique, l'intelligence artificielle, l'entrepreneuriat, la conception et le développement technologiques, l'économie créative, ainsi que l'industrie et les services intelligents. Il travaille actuellement sur plusieurs projets stratégiques et est considéré comme une référence émergente dans le développement de solutions intégrées combinant technologie et innovation sociale, avec une véritable volonté de changement.">He has a deep vision for building intelligent and sustainable systems connecting digital education, artificial intelligence, entrepreneurship, technological design and development, creative economy, and smart industry and services. He currently works on several strategic projects and is considered a rising reference in developing integrated solutions combining technology and social innovation, with a true drive for change.</p>
+        <h3 style="font-size: 1.8rem; margin-bottom: 20px;" data-key="bioName">بندعاس زين الدين (Tuto)</h3>
+        <p class="bio-text" data-key="bioText1">شاب جزائري طموح، متعدد التخصصات، ومبادر من الطراز العالي. وُلد بروح ريادية وتكنولوجية، يسعى لإحداث أثر ملموس في التعليم، التكنولوجيا، الصناعة الإبداعية، والتنمية المجتمعية في الجزائر والعالم العربي.</p>
+        <p class="bio-text" data-key="bioText2">يمتلك رؤية عميقة لبناء منظومات ذكية ومستدامة تربط بين التعليم الرقمي، الذكاء الاصطناعي، ريادة الأعمال، التصميم والتطوير التكنولوجي، الاقتصاد الإبداعي، والصناعة والخدمات الذكية. يعمل حاليًا على عدة مشاريع استراتيجية، ويُعد مرجعًا صاعدًا في تطوير حلول متكاملة تجمع بين التكنولوجيا والابتكار الاجتماعي، بدافع حقيقي للتغيير.</p>
         <div class="values-container">
           <div class="value-tag">
             <i class="fas fa-lightbulb"></i>
-            <span data-en="Innovation" data-ar="الابتكار" data-fr="Innovation">Innovation</span>
+            <span data-key="valueInnovation">الابتكار</span>
           </div>
           <div class="value-tag">
             <i class="fas fa-book"></i>
-            <span data-en="Learning" data-ar="التعلم" data-fr="Apprentissage">Learning</span>
+            <span data-key="valueLearning">التعلم</span>
           </div>
           <div class="value-tag">
             <i class="fas fa-bullseye"></i>
-            <span data-en="Impact" data-ar="التأثير" data-fr="Impact">Impact</span>
+            <span data-key="valueImpact">التأثير</span>
           </div>
           <div class="value-tag">
             <i class="fas fa-users"></i>
-            <span data-en="Collaboration" data-ar="التعاون" data-fr="Collaboration">Collaboration</span>
+            <span data-key="valueCollaboration">التعاون</span>
           </div>
           <div class="value-tag">
             <i class="fas fa-rocket"></i>
-            <span data-en="Entrepreneurship" data-ar="ريادة الأعمال" data-fr="Entrepreneuriat">Entrepreneurship</span>
+            <span data-key="valueEntrepreneurship">ريادة الأعمال</span>
           </div>
         </div>
       </div>
     </div>
   </section>
+  
   <!-- Projects Section -->
   <section id="projects" class="section">
-    <h2 class="section-title" data-en="Projects & Ventures" data-ar="المشاريع والمبادرات" data-fr="Projets & Entreprises">Projects & Ventures</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-car"></i>
+    <h2 class="section-title" data-key="projectsTitle">المشاريع والمبادرات</h2>
+    <div class="projects-container">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-car"></i>
+                </div>
+                <h3 class="project-title" data-key="projectTitle1">IL Motors</h3>
+              </div>
+              <div class="project-content">
+                <p class="project-description" data-key="projectDesc1">مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية. يشمل ثلاثة نماذج رئيسية: IL-City (سيارة حضرية)، IL-Family (سيارة عائلية)، و IL-Falcon 500 (طراز فاخر رياضي).</p>
+                <div class="project-tags">
+                  <span class="tag" data-key="tagIndustry">صناعة</span>
+                  <span class="tag" data-key="tagElectricCars">سيارات كهربائية</span>
+                  <span class="tag" data-key="tagAI">ذكاء اصطناعي</span>
+                </div>
+                <div class="project-links">
+                  <a href="#" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-key="details">تفاصيل</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="project-title" data-en="IL Motors" data-ar="IL Motors" data-fr="IL Motors">IL Motors</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="A bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market. Includes three main models: IL-City (urban car), IL-Family (family car), and IL-Falcon 500 (luxury sports model)." data-ar="مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية. يشمل ثلاثة نماذج رئيسية: IL-City (سيارة حضرية)، IL-Family (سيارة عائلية)، و IL-Falcon 500 (طراز فاخر رياضي)." data-fr="Un projet industriel audacieux visant à concevoir et produire une série de voitures électriques intelligentes pour le marché local et mondial. Comprend trois modèles principaux : IL-City (voiture urbaine), IL-Family (voiture familiale) et IL-Falcon 500 (modèle de luxe sportif).">A bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market. Includes three main models: IL-City (urban car), IL-Family (family car), and IL-Falcon 500 (luxury sports model).</p>
-          <div class="project-tags">
-            <span class="tag" data-en="Manufacturing" data-ar="صناعة" data-fr="Fabrication">Manufacturing</span>
-            <span class="tag" data-en="Electric Cars" data-ar="سيارات كهربائية" data-fr="Voitures électriques">Electric Cars</span>
-            <span class="tag" data-en="AI" data-ar="ذكاء اصطناعي" data-fr="IA">AI</span>
+          
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="project-title" data-key="projectTitle2">Infiteach</h3>
+              </div>
+              <div class="project-content">
+                <p class="project-description" data-key="projectDesc2">منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ من جميع الأطوار، ودورات مهنية للأساتذة ومراكز التكوين، وبوت ذكي باسم 'نور' يعمل كمساعد دراسي شخصي. مبنية باستخدام Firebase و Google Sheets وتكاملات ChatGPT.</p>
+                <div class="project-tags">
+                  <span class="tag" data-key="tagEducation">تعليم</span>
+                  <span class="tag" data-key="tagAI">ذكاء اصطناعي</span>
+                  <span class="tag" data-key="tagDigitalPlatform">منصة رقمية</span>
+                </div>
+               <div class="project-links">
+                  <a href="https://tutophy.github.io/infitech/" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-key="website">الموقع</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-en="Details" data-ar="تفاصيل" data-fr="Détails">Details</span>
-            </a>
+          
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="project-title" data-key="projectTitle3">SYNAPSE</h3>
+              </div>
+              <div class="project-content">
+                <p class="project-description" data-key="projectDesc3">نادي علمي متعدد التخصصات تم إنشاؤه داخل المركز العلمي الترفيهي باتنة، يجمع الطلبة والباحثين في الذكاء الاصطناعي، الطب، الكيمياء، الاقتصاد، الإلكترونيات، علم الحيوان، والفن والتصميم.</p>
+                <div class="project-tags">
+                  <span class="tag" data-key="tagScience">علوم</span>
+                  <span class="tag" data-key="tagResearch">بحث</span>
+                  <span class="tag" data-key="tagEducation">تعليم</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://tutophy.github.io/synapse/" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-key="website">الموقع</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-graduation-cap"></i>
+          
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-infinity"></i>
+                </div>
+                <h3 class="project-title" data-key="projectTitle4">INFINITELOGIC</h3>
+              </div>
+              <div class="project-content">
+                <p class="project-description" data-key="projectDesc4">فريق شبابي جزائري تحت قيادتي، يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم الجرافيكي والموشن، تطوير المواقع والأنظمة، إعداد محتوى تسويقي وتربوي ذكي، والتحليل السوقي.</p>
+                <div class="project-tags">
+                  <span class="tag" data-key="tagDesign">تصميم</span>
+                  <span class="tag" data-key="tagDevelopment">تطوير</span>
+                  <span class="tag" data-key="tagMarketing">تسويق</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://tutophy.github.io/website/" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-key="website">الموقع</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="project-title" data-en="Infiteach" data-ar="Infiteach" data-fr="Infiteach">Infiteach</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="A smart digital educational platform including support lessons for students of all levels, professional courses for teachers and training centers, and an intelligent bot named 'Noor' that works as a personal academic assistant. Built using Firebase, Google Sheets, and ChatGPT integrations." data-ar="منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ من جميع الأطوار، ودورات مهنية للأساتذة ومراكز التكوين، وبوت ذكي باسم 'نور' يعمل كمساعد دراسي شخصي. مبنية باستخدام Firebase و Google Sheets وتكاملات ChatGPT." data-fr="Une plateforme d'apprentissage numérique intelligente comprenant des cours de soutien pour les étudiants de tous niveaux, des cours professionnels pour les enseignants et les centres de formation, et un bot intelligent nommé 'Noor' qui fonctionne comme assistant académique personnel. Construite avec Firebase, Google Sheets et des intégrations ChatGPT.">A smart digital educational platform including support lessons for students of all levels, professional courses for teachers and training centers, and an intelligent bot named 'Noor' that works as a personal academic assistant. Built using Firebase, Google Sheets, and ChatGPT integrations.</p>
-          <div class="project-tags">
-            <span class="tag" data-en="Education" data-ar="تعليم" data-fr="Éducation">Education</span>
-            <span class="tag" data-en="AI" data-ar="ذكاء اصطناعي" data-fr="IA">AI</span>
-            <span class="tag" data-en="Digital Platform" data-ar="منصة رقمية" data-fr="Plateforme numérique">Digital Platform</span>
+          
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h3 class="project-title" data-key="projectTitle5">قضية فندق كوادرا</h3>
+              </div>
+              <div class="project-content">
+                <p class="project-description" data-key="projectDesc5">لعبة تحقيق تفاعلية غامضة، تمزج بين الرواية البوليسية، الواقع الافتراضي، والتصميم التجريبي. تدور أحداثها في الجزائر، وتحتوي على وثائق حقيقية، أدلة مادية (USB، صور)، وألغاز مشفّرة.</p>
+                <div class="project-tags">
+                  <span class="tag" data-key="tagGame">لعبة</span>
+                  <span class="tag" data-key="tagInteractive">تفاعلية</span>
+                  <span class="tag" data-key="tagCreativity">إبداع</span>
+                </div>
+                
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="https://tutophy.github.io/infitech/" class="project-link">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-en="Website" data-ar="الموقع" data-fr="Site web">Website</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3 class="project-title" data-en="SYNAPSE" data-ar="SYNAPSE" data-fr="SYNAPSE">SYNAPSE</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="A multidisciplinary scientific club created inside the CLS Batna, bringing together students and researchers in artificial intelligence, medicine, chemistry, economics, electronics, animal science, and art and design." data-ar="نادي علمي متعدد التخصصات تم إنشاؤه داخل المركز العلمي الترفيهي باتنة، يجمع الطلبة والباحثين في الذكاء الاصطناعي، الطب، الكيمياء، الاقتصاد، الإلكترونيات، علم الحيوان، والفن والتصميم." data-fr="Un club scientifique multidisciplinaire créé au sein du CLS Batna, réunissant étudiants et chercheurs en intelligence artificielle, médecine, chimie, économie, électronique, sciences animales, ainsi qu'en art et design.">A multidisciplinary scientific club created inside the CLS Batna, bringing together students and researchers in artificial intelligence, medicine, chemistry, economics, electronics, animal science, and art and design.</p>
-          <div class="project-tags">
-            <span class="tag" data-en="Sciences" data-ar="علوم" data-fr="Sciences">Sciences</span>
-            <span class="tag" data-en="Research" data-ar="بحث" data-fr="Recherche">Research</span>
-            <span class="tag" data-en="Education" data-ar="تعليم" data-fr="Éducation">Education</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-en="Website" data-ar="الموقع" data-fr="Site web">Website</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-camera"></i>
-          </div>
-          <h3 class="project-title" data-en="Snap_Life.05" data-ar="Snap_Life.05" data-fr="Snap_Life.05">Snap_Life.05</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="A personal brand in photography and visual storytelling. Offers short-form content, studio sessions, and digital branding. Supervised by photographer 'Tarek' with professional training courses and field workshops." data-ar="علامة شخصية في مجال التصوير الفوتوغرافي والسرد البصري. تقدم محتوى قصير الشكل وجلسات استوديو والعلامات التجارية الرقمية. يشرف عليها المصور 'طارق' مع دورات تدريبية مهنية وورشات ميدانية." data-fr="Une marque personnelle en photographie et narration visuelle. Propose du contenu court format, des séances en studio et du branding numérique. Supervisé par le photographe 'Tarek' avec des cours de formation professionnelle et des ateliers sur le terrain.">A personal brand in photography and visual storytelling. Offers short-form content, studio sessions, and digital branding. Supervised by photographer 'Tarek' with professional training courses and field workshops.</p>
-          <div class="project-tags">
-            <span class="tag" data-en="Photography" data-ar="تصوير" data-fr="Photographie">Photography</span>
-            <span class="tag" data-en="Creativity" data-ar="إبداع" data-fr="Créativité">Creativity</span>
-            <span class="tag" data-en="Content" data-ar="محتوى" data-fr="Contenu">Content</span>
-          </div>
-          <div class="project-links">
-            <a href="https://www.instagram.com/snap_life.05/" class="project-link">
-              <i class="fab fa-instagram"></i>
-              <span data-en="Instagram" data-ar="انستغرام" data-fr="Instagram">Instagram</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-infinity"></i>
-          </div>
-          <h3 class="project-title" data-en="INFINITELOGIC" data-ar="INFINITELOGIC" data-fr="INFINITELOGIC">INFINITELOGIC</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="An Algerian youth team under my leadership, offering professional services in creative presentations, graphic and motion design, website and system development, smart marketing and educational content preparation, and market analysis." data-ar="فريق شبابي جزائري تحت قيادتي، يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم الجرافيكي والموشن، تطوير المواقع والأنظمة، إعداد محتوى تسويقي وتربوي ذكي، والتحليل السوقي." data-fr="Une équipe de jeunes algériens sous ma direction, offrant des services professionnels en présentations créatives, design graphique et motion, développement de sites web et systèmes, préparation de contenu marketing et éducatif intelligent, et analyse de marché.">An Algerian youth team under my leadership, offering professional services in creative presentations, graphic and motion design, website and system development, smart marketing and educational content preparation, and market analysis.</p>
-          <div class="project-tags">
-            <span class="tag" data-en="Design" data-ar="تصميم" data-fr="Design">Design</span>
-            <span class="tag" data-en="Development" data-ar="تطوير" data-fr="Développement">Development</span>
-            <span class="tag" data-en="Marketing" data-ar="تسويق" data-fr="Marketing">Marketing</span>
-          </div>
-          <div class="project-links">
-            <a href="https://tutophy.github.io/website/" class="project-link">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-en="Website" data-ar="الموقع" data-fr="Site web">Website</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-search"></i>
-          </div>
-          <h3 class="project-title" data-en="Quadra Hotel Case" data-ar="قضية فندق كوادرا" data-fr="Affaire de l'hôtel Quadra">Quadra Hotel Case</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="An interactive mystery investigation game, blending detective novels, virtual reality, and experimental design. Set in Algeria, containing real documents, physical evidence (USB, photos), and encrypted puzzles." data-ar="لعبة تحقيق تفاعلية غامضة، تمزج بين الرواية البوليسية، الواقع الافتراضي، والتصميم التجريبي. تدور أحداثها في الجزائر، وتحتوي على وثائق حقيقية، أدلة مادية (USB، صور)، وألغاز مشفّرة." data-fr="Un jeu interactif d'enquête mystère, mêlant romans policiers, réalité virtuelle et design expérimental. Se déroulant en Algérie, contenant de vrais documents, des preuves physiques (clés USB, photos) et des énigmes cryptées.">An interactive mystery investigation game, blending detective novels, virtual reality, and experimental design. Set in Algeria, containing real documents, physical evidence (USB, photos), and encrypted puzzles.</p>
-          <div class="project-tags">
-            <span class="tag" data-en="Game" data-ar="لعبة" data-fr="Jeu">Game</span>
-            <span class="tag" data-en="Interactive" data-ar="تفاعلية" data-fr="Interactif">Interactive</span>
-            <span class="tag" data-en="Creativity" data-ar="إبداع" data-fr="Créativité">Creativity</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-en="Experience" data-ar="تجربة" data-fr="Expérience">Experience</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3 class="project-title" data-en="Noor Bot" data-ar="Noor Bot" data-fr="Noor Bot">Noor Bot</h3>
-        </div>
-        <div class="project-content">
-          <p class="project-description" data-en="An intelligent academic assistant designed for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations to align with official curricula. Offers immediate personal support to students according to the official Algerian program." data-ar="مساعد أكاديمي ذكي مصمم لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek لمواءمة المناهج الرسمية. يقدم دعمًا شخصيًا فوريًا للتلاميذ حسب البرنامج الرسمي الجزائري." data-fr="Un assistant académique intelligent conçu pour les étudiants algériens du BAC utilisant des intégrations ChatGPT, Gemini et DeepSeek pour s'aligner sur les programmes officiels. Offre un soutien personnel immédiat aux étudiants selon le programme algérien officiel.">An intelligent academic assistant designed for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations to align with official curricula. Offers immediate personal support to students according to the official Algerian program.</p>
-          <div class="project-tags">
-            <span class="tag" data-en="AI" data-ar="ذكاء اصطناعي" data-fr="IA">AI</span>
-            <span class="tag" data-en="Education" data-ar="تعليم" data-fr="Éducation">Education</span>
-            <span class="tag" data-en="Telegram" data-ar="تلغرام" data-fr="Telegram">Telegram</span>
-          </div>
-          <div class="project-links">
-            <a href="https://tutophy.github.io/infitech/" class="project-link">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-en="Website" data-ar="الموقع" data-fr="Site web">Website</span>
-            </a>
+          
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="project-title" data-key="projectTitle6">Noor Bot</h3>
+              </div>
+              <div class="project-content">
+                <p class="project-description" data-key="projectDesc6">مساعد أكاديمي ذكي مصمم لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek لمواءمة المناهج الرسمية. يقدم دعمًا شخصيًا فوريًا للتلاميذ حسب البرنامج الرسمي الجزائري.</p>
+                <div class="project-tags">
+                  <span class="tag" data-key="tagAI">ذكاء اصطناعي</span>
+                  <span class="tag" data-key="tagEducation">تعليم</span>
+                  <span class="tag" data-key="tagTelegram">تلغرام</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://tutophy.github.io/infitech/" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-key="website">الموقع</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
     </div>
   </section>
+  
   <!-- Skills Section -->
   <section id="skills" class="section">
-    <h2 class="section-title" data-en="Core Skills" data-ar="المهارات الأساسية" data-fr="Compétences clés">Core Skills</h2>
+    <h2 class="section-title" data-key="skillsTitle">المهارات الأساسية</h2>
     <div class="skills-container">
       <div class="skill-category">
-        <h3><i class="fas fa-brain"></i> <span data-en="AI & Platforms" data-ar="الذكاء الاصطناعي والمنصات" data-fr="IA & Plateformes">AI & Platforms</span></h3>
+        <h3><i class="fas fa-brain"></i> <span data-key="skillsCategory1">الذكاء الاصطناعي والمنصات</span></h3>
         <div class="skill-list">
           <div class="skill-item">ChatGPT</div>
           <div class="skill-item">Gemini</div>
@@ -1264,7 +1576,7 @@
       </div>
       
       <div class="skill-category">
-        <h3><i class="fas fa-code"></i> <span data-en="Development & Design" data-ar="تطوير وتصميم" data-fr="Développement & Design">Development & Design</span></h3>
+        <h3><i class="fas fa-code"></i> <span data-key="skillsCategory2">تطوير وتصميم</span></h3>
         <div class="skill-list">
           <div class="skill-item">Python</div>
           <div class="skill-item">JavaScript</div>
@@ -1277,42 +1589,42 @@
       </div>
       
       <div class="skill-category">
-        <h3><i class="fas fa-video"></i> <span data-en="Media & Content" data-ar="الإعلام والمحتوى" data-fr="Médias & Contenu">Media & Content</span></h3>
+        <h3><i class="fas fa-video"></i> <span data-key="skillsCategory3">الإعلام والمحتوى</span></h3>
         <div class="skill-list">
           <div class="skill-item">DaVinci Resolve</div>
           <div class="skill-item">CapCut</div>
           <div class="skill-item">TikTok Creative Tools</div>
-          <div class="skill-item">Photography</div>
-          <div class="skill-item">Visual Storytelling</div>
-          <div class="skill-item">Art Direction</div>
+          <div class="skill-item" data-key="skillPhotography">Photography</div>
+          <div class="skill-item" data-key="skillStorytelling">Visual Storytelling</div>
+          <div class="skill-item" data-key="skillArtDirection">Art Direction</div>
         </div>
       </div>
       
       <div class="skill-category">
-        <h3><i class="fas fa-briefcase"></i> <span data-en="Management & Strategy" data-ar="إدارة واستراتيجية" data-fr="Management & Stratégie">Management & Strategy</span></h3>
+        <h3><i class="fas fa-briefcase"></i> <span data-key="skillsCategory4">إدارة واستراتيجية</span></h3>
         <div class="skill-list">
-          <div class="skill-item">Team Leadership</div>
-          <div class="skill-item">Market Analysis</div>
-          <div class="skill-item">Brand Building</div>
-          <div class="skill-item">Strategic Planning</div>
-          <div class="skill-item">Project Management</div>
-          <div class="skill-item">Social Innovation</div>
+          <div class="skill-item" data-key="skillLeadership">Team Leadership</div>
+          <div class="skill-item" data-key="skillAnalysis">Market Analysis</div>
+          <div class="skill-item" data-key="skillBranding">Brand Building</div>
+          <div class="skill-item" data-key="skillPlanning">Strategic Planning</div>
+          <div class="skill-item" data-key="skillManagement">Project Management</div>
+          <div class="skill-item" data-key="skillInnovation">Social Innovation</div>
         </div>
       </div>
       
       <div class="skill-category">
-        <h3><i class="fas fa-graduation-cap"></i> <span data-en="Education & Training" data-ar="التعليم والتكوين" data-fr="Éducation & Formation">Education & Training</span></h3>
+        <h3><i class="fas fa-graduation-cap"></i> <span data-key="skillsCategory5">التعليم والتكوين</span></h3>
         <div class="skill-list">
-          <div class="skill-item">Educational Platforms</div>
-          <div class="skill-item">Content Design</div>
-          <div class="skill-item">Distance Learning</div>
-          <div class="skill-item">Educational Media</div>
-          <div class="skill-item">Performance Evaluation</div>
+          <div class="skill-item" data-key="skillPlatforms">Educational Platforms</div>
+          <div class="skill-item" data-key="skillContent">Content Design</div>
+          <div class="skill-item" data-key="skillDistance">Distance Learning</div>
+          <div class="skill-item" data-key="skillMedia">Educational Media</div>
+          <div class="skill-item" data-key="skillEvaluation">Performance Evaluation</div>
         </div>
       </div>
       
       <div class="skill-category">
-        <h3><i class="fas fa-microchip"></i> <span data-en="Technologies & Hardware" data-ar="تقنيات وأجهزة" data-fr="Technologies & Matériel">Technologies & Hardware</span></h3>
+        <h3><i class="fas fa-microchip"></i> <span data-key="skillsCategory6">تقنيات وأجهزة</span></h3>
         <div class="skill-list">
           <div class="skill-item">Arduino</div>
           <div class="skill-item">IoT kits</div>
@@ -1323,97 +1635,100 @@
       </div>
     </div>
   </section>
+  
   <!-- Testimonials Section -->
   <section id="testimonials" class="section">
-    <h2 class="section-title" data-en="Testimonials & Collaborations" data-ar="التوصيات والتعاونات" data-fr="Témoignages & Collaborations">Testimonials & Collaborations</h2>
+    <h2 class="section-title" data-key="testimonialsTitle">التوصيات والتعاونات</h2>
     <div class="testimonials-container">
       <div class="testimonial-card">
-        <p class="testimonial-text" data-en="Working with Zine was a transformative experience. His vision for AI and its applications in education inspired our entire team to rethink our approach." data-ar="العمل مع زين الدين كان تجربة محولة. رؤيته للذكاء الاصطناعي وتطبيقاته في التعليم ألهمت فريقنا بأكمله لإعادة التفكير في نهجنا." data-fr="Travailler avec Zine a été une expérience transformante. Sa vision de l'IA et de ses applications dans l'éducation a inspiré toute notre équipe à repenser notre approche.">Working with Zine was a transformative experience. His vision for AI and its applications in education inspired our entire team to rethink our approach.</p>
+        <p class="testimonial-text" data-key="testimonial1">العمل مع زين الدين كان تجربة محولة. رؤيته للذكاء الاصطناعي وتطبيقاته في التعليم ألهمت فريقنا بأكمله لإعادة التفكير في نهجنا.</p>
         <div class="testimonial-author">
           <div class="author-info">
-            <h4 data-en="Dr. Ahmed Mohammed" data-ar="د. أحمد محمد" data-fr="Dr. Ahmed Mohammed">Dr. Ahmed Mohammed</h4>
-            <p data-en="Director of Digital Education Center" data-ar="مدير مركز التعليم الرقمي" data-fr="Directeur du Centre d'Éducation Numérique">Director of Digital Education Center</p>
+            <h4 data-key="author1Name">د. أحمد محمد</h4>
+            <p data-key="author1Position">مدير مركز التعليم الرقمي</p>
           </div>
         </div>
       </div>
       
       <div class="testimonial-card">
-        <p class="testimonial-text" data-en="Zine is not just a tech innovator, but an inspiring leader who combines deep knowledge with the ability to motivate others. His projects with IL Motors and Infiteach prove that." data-ar="زين الدين ليس فقط مبتكرًا تقنيًا، بل هو قائد ملهم يجمع بين المعرفة العميقة والقدرة على تحفيز الآخرين. مشاريعه مع IL Motors و Infiteach تثبت ذلك." data-fr="Zine n'est pas seulement un innovateur technologique, mais aussi un leader inspirant qui combine une connaissance approfondie avec la capacité de motiver les autres. Ses projets avec IL Motors et Infiteach en sont la preuve.">Zine is not just a tech innovator, but an inspiring leader who combines deep knowledge with the ability to motivate others. His projects with IL Motors and Infiteach prove that.</p>
+        <p class="testimonial-text" data-key="testimonial2">زين الدين ليس فقط مبتكرًا تقنيًا، بل هو قائد ملهم يجمع بين المعرفة العميقة والقدرة على تحفيز الآخرين. مشاريعه مع IL Motors و Infiteach تثبت ذلك.</p>
         <div class="testimonial-author">
           <div class="author-info">
-            <h4 data-en="Sara Ben Ali" data-ar="سارة بن علي" data-fr="Sara Ben Ali">Sara Ben Ali</h4>
-            <p data-en="Co-founder, INFINITELOGIC" data-ar="شريكة مؤسسة، INFINITELOGIC" data-fr="Co-fondatrice, INFINITELOGIC">Co-founder, INFINITELOGIC</p>
+            <h4 data-key="author2Name">سارة بن علي</h4>
+            <p data-key="author2Position">شريكة مؤسسة، INFINITELOGIC</p>
           </div>
         </div>
       </div>
       
       <div class="testimonial-card">
-        <p class="testimonial-text" data-en="As a student in the SYNAPSE club, I learned from Zine how to apply scientific concepts to real-world problems. His teaching style makes complex things simple and interesting." data-ar="كطالبة في نادي SYNAPSE، تعلمت من زين الدين كيفية تطبيق المفاهيم العلمية في حل المشكلات الواقعية. أسلوبه في التعليم يجعل المعقد بسيطًا ومثيرًا للاهتمام." data-fr="En tant qu'étudiante au club SYNAPSE, j'ai appris de Zine comment appliquer des concepts scientifiques à des problèmes du monde réel. Son style d'enseignement rend les choses complexes simples et intéressantes.">As a student in the SYNAPSE club, I learned from Zine how to apply scientific concepts to real-world problems. His teaching style makes complex things simple and interesting.</p>
+        <p class="testimonial-text" data-key="testimonial3">كطالبة في نادي SYNAPSE، تعلمت من زين الدين كيفية تطبيق المفاهيم العلمية في حل المشكلات الواقعية. أسلوبه في التعليم يجعل المعقد بسيطًا ومثيرًا للاهتمام.</p>
         <div class="testimonial-author">
           <div class="author-info">
-            <h4 data-en="soumia Khelifi" data-ar="سومية خليفي" data-fr="Soumia Khelifi">soumia Khelifi</h4>
-            <p data-en="Student, SYNAPSE Club" data-ar="طالبة، نادي SYNAPSE" data-fr="Étudiante, Club SYNAPSE">Student, SYNAPSE Club</p>
+            <h4 data-key="author3Name">سومية خليفي</h4>
+            <p data-key="author3Position">طالبة، نادي SYNAPSE</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+  
   <!-- Timeline Section -->
   <section id="timeline" class="section">
-    <h2 class="section-title" data-en="Timeline" data-ar="الجدول الزمني" data-fr="Chronologie">Timeline</h2>
+    <h2 class="section-title" data-key="timelineTitle">الجدول الزمني</h2>
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">2025</div>
-          <h3 class="timeline-title" data-en="Founding SYNAPSE Club" data-ar="تأسيس نادي SYNAPSE" data-fr="Fondation du Club SYNAPSE">Founding SYNAPSE Club</h3>
-          <p class="timeline-description" data-en="Founding a multidisciplinary scientific club inside the CLS Batna to bring together students and researchers in various scientific fields." data-ar="تأسيس نادي علمي متعدد التخصصات داخل المركز العلمي الترفيهي باتنة لجمع الطلبة والباحثين في مجالات علمية متنوعة." data-fr="Fondation d'un club scientifique multidisciplinaire au sein du CLS Batna pour réunir étudiants et chercheurs dans divers domaines scientifiques.">Founding a multidisciplinary scientific club inside the CLS Batna to bring together students and researchers in various scientific fields.</p>
+          <div class="timeline-date"><i class="far fa-calendar"></i> 2025</div>
+          <h3 class="timeline-title" data-key="timelineItem1">تأسيس نادي SYNAPSE</h3>
+          <p class="timeline-description" data-key="timelineDesc1">تأسيس نادي علمي متعدد التخصصات داخل المركز العلمي الترفيهي باتنة لجمع الطلبة والباحثين في مجالات علمية متنوعة.</p>
         </div>
       </div>
       
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">2024</div>
-          <h3 class="timeline-title" data-en="Developing Noor Bot" data-ar="تطوير Noor Bot" data-fr="Développement de Noor Bot">Developing Noor Bot</h3>
-          <p class="timeline-description" data-en="Developing an intelligent academic assistant for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations." data-ar="تطوير مساعد أكاديمي ذكي لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek." data-fr="Développement d'un assistant académique intelligent pour les étudiants algériens du BAC utilisant des intégrations ChatGPT, Gemini et DeepSeek.">Developing an intelligent academic assistant for Algerian BAC students using ChatGPT, Gemini, and DeepSeek integrations.</p>
+          <div class="timeline-date"><i class="far fa-calendar"></i> 2024</div>
+          <h3 class="timeline-title" data-key="timelineItem2">تطوير Noor Bot</h3>
+          <p class="timeline-description" data-key="timelineDesc2">تطوير مساعد أكاديمي ذكي لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek.</p>
         </div>
       </div>
       
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">2023</div>
-          <h3 class="timeline-title" data-en="Launch of Infiteach" data-ar="إطلاق Infiteach" data-fr="Lancement d'Infiteach">Launch of Infiteach</h3>
-          <p class="timeline-description" data-en="Launching a smart digital educational platform including support lessons for students and professional courses for teachers and an intelligent bot named 'Noor'." data-ar="إطلاق منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ ودورات مهنية للأساتذة وبوت ذكي باسم 'نور'." data-fr="Lancement d'une plateforme d'apprentissage numérique intelligente comprenant des cours de soutien pour les étudiants, des cours professionnels pour les enseignants et un bot intelligent nommé 'Noor'.">Launching a smart digital educational platform including support lessons for students and professional courses for teachers and an intelligent bot named 'Noor'.</p>
+          <div class="timeline-date"><i class="far fa-calendar"></i> 2023</div>
+          <h3 class="timeline-title" data-key="timelineItem3">إطلاق Infiteach</h3>
+          <p class="timeline-description" data-key="timelineDesc3">إطلاق منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ ودورات مهنية للأساتذة وبوت ذكي باسم 'نور'.</p>
         </div>
       </div>
       
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">2022</div>
-          <h3 class="timeline-title" data-en="Founding INFINITELOGIC" data-ar="تأسيس INFINITELOGIC" data-fr="Fondation d'INFINITELOGIC">Founding INFINITELOGIC</h3>
-          <p class="timeline-description" data-en="Establishing an Algerian youth team offering professional services in creative presentations, design, development, and smart marketing solutions." data-ar="تأسيس فريق شبابي جزائري يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم، التطوير، وحلول التسويق الذكية." data-fr="Création d'une équipe de jeunes algériens offrant des services professionnels en présentations créatives, design, développement et solutions marketing intelligentes.">Establishing an Algerian youth team offering professional services in creative presentations, design, development, and smart marketing solutions.</p>
+          <div class="timeline-date"><i class="far fa-calendar"></i> 2022</div>
+          <h3 class="timeline-title" data-key="timelineItem4">تأسيس INFINITELOGIC</h3>
+          <p class="timeline-description" data-key="timelineDesc4">تأسيس فريق شبابي جزائري يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم، التطوير، وحلول التسويق الذكية.</p>
         </div>
       </div>
       
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">2021</div>
-          <h3 class="timeline-title" data-en="Launch of IL Motors" data-ar="إطلاق IL Motors" data-fr="Lancement d'IL Motors">Launch of IL Motors</h3>
-          <p class="timeline-description" data-en="Launching a bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market." data-ar="إطلاق مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية." data-fr="Lancement d'un projet industriel audacieux visant à concevoir et produire une série de voitures électriques intelligentes pour le marché local et mondial.">Launching a bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market.</p>
+          <div class="timeline-date"><i class="far fa-calendar"></i> 2021</div>
+          <h3 class="timeline-title" data-key="timelineItem5">إطلاق IL Motors</h3>
+          <p class="timeline-description" data-key="timelineDesc5">إطلاق مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية.</p>
         </div>
       </div>
     </div>
   </section>
+  
   <!-- Contact Section -->
   <section id="contact" class="section">
-    <h2 class="section-title" data-en="Contact Me" data-ar="تواصل معي" data-fr="Contactez-moi">Contact Me</h2>
+    <h2 class="section-title" data-key="contactTitle">تواصل معي</h2>
     <div class="contact-container">
       <div class="contact-info">
-        <h3 style="font-size: 1.5rem; margin-bottom: 30px;" data-en="Contact Information" data-ar="معلومات التواصل" data-fr="Informations de contact">Contact Information</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 30px;" data-key="contactInfo">معلومات التواصل</h3>
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <p>tutophy.ads@gmail.com</p>
@@ -1424,7 +1739,7 @@
         </div>
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
-          <p data-en="Batna, Algeria" data-ar="باتنة، الجزائر" data-fr="Batna, Algérie">Batna, Algeria</p>
+          <p data-key="location">باتنة، الجزائر</p>
         </div>
         <div class="social-links">
           <a href="https://instagram.com/tutophy" class="social-link" target="_blank">
@@ -1445,41 +1760,428 @@
         </div>
         
         <div class="cv-download">
-          <a href="https://cvtuto.tiiny.site/" class="cv-button" data-en="Download CV" data-ar="تحميل السيرة الذاتية" data-fr="Télécharger CV">
+          <a href="https://cvtuto.tiiny.site/" class="cv-button">
             <i class="fas fa-download"></i>
-            <span data-en="Download CV" data-ar="تحميل السيرة الذاتية" data-fr="Télécharger CV">Download CV</span>
+            <span data-key="downloadCV">تحميل السيرة الذاتية</span>
           </a>
         </div>
       </div>
       
       <div class="contact-form">
-        <h3 style="font-size: 1.5rem; margin-bottom: 30px;" data-en="Send Me a Message" data-ar="أرسل لي رسالة" data-fr="Envoyez-moi un message">Send Me a Message</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 30px;" data-key="sendMessage">أرسل لي رسالة</h3>
         <form>
           <div class="form-group">
-            <input type="text" class="form-control" data-en-placeholder="Name" data-ar-placeholder="الاسم" data-fr-placeholder="Nom" placeholder="Name">
+            <input type="text" class="form-control" placeholder="الاسم" data-key="namePlaceholder">
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" data-en-placeholder="Email" data-ar-placeholder="البريد الإلكتروني" data-fr-placeholder="Email" placeholder="Email">
+            <input type="email" class="form-control" placeholder="البريد الإلكتروني" data-key="emailPlaceholder">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" data-en-placeholder="Subject" data-ar-placeholder="الموضوع" data-fr-placeholder="Sujet" placeholder="Subject">
+            <input type="text" class="form-control" placeholder="الموضوع" data-key="subjectPlaceholder">
           </div>
           <div class="form-group">
-            <textarea class="form-control" data-en-placeholder="Message" data-ar-placeholder="الرسالة" data-fr-placeholder="Message" placeholder="Message"></textarea>
+            <textarea class="form-control" placeholder="الرسالة" data-key="messagePlaceholder"></textarea>
           </div>
-          <button type="submit" class="submit-button" data-en="Send Message" data-ar="إرسال الرسالة" data-fr="Envoyer le message">Send Message</button>
+          <button type="submit" class="submit-button" data-key="sendButton">إرسال الرسالة</button>
         </form>
       </div>
     </div>
   </section>
+  
   <!-- Footer -->
   <footer>
-    <p class="footer-text" data-en="© 2025 Bendaas Zine Eddine (Tuto). All Rights Reserved" data-ar="© 2025 بندعاس زين الدين (Tuto). جميع الحقوق محفوظة" data-fr="© 2025 Bendaas Zine Eddine (Tuto). Tous droits réservés">© 2025 Bendaas Zine Eddine (Tuto). All Rights Reserved</p>
     <div class="footer-logo">Tuto</div>
+    <p class="footer-text" data-key="footerText">شاب جزائري طموح، متعدد التخصصات، ومبادر من الطراز العالي. أسعى لإحداث أثر ملموس في التعليم، التكنولوجيا، الصناعة الإبداعية، والتنمية المجتمعية في الجزائر والعالم العربي.</p>
+    <p class="copyright">© 2025 بندعاس زين الدين (Tuto). جميع الحقوق محفوظة</p>
   </footer>
+  
+  <!-- Scroll to Top Button -->
+  <div class="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
+    // الترجمة متعددة اللغات
+    const translations = {
+      ar: {
+        navHome: "الرئيسية",
+        navBio: "السيرة",
+        navProjects: "المشاريع",
+        navSkills: "المهارات",
+        navTestimonials: "التوصيات",
+        navTimeline: "الجدول الزمني",
+        navContact: "تواصل",
+        heroTitle: "بندعاس زين الدين (Tuto)",
+        heroSubtitle: "صانع المستقبل | ريادي متعدد التخصصات | مهندس حلول ذكية",
+        heroDescription: "أبني منظومات ذكية ومستدامة تربط بين التعليم الرقمي والذكاء الاصطناعي وريادة الأعمال والتصميم التكنولوجي في الجزائر والعالم العربي.",
+        contactMe: "تواصل معي",
+        exploreProjects: "استكشف مشاريعي",
+        bioTitle: "من هو Tuto؟",
+        bioName: "بندعاس زين الدين (Tuto)",
+        bioText1: "شاب جزائري طموح، متعدد التخصصات، ومبادر من الطراز العالي. وُلد بروح ريادية وتكنولوجية، يسعى لإحداث أثر ملموس في التعليم، التكنولوجيا، الصناعة الإبداعية، والتنمية المجتمعية في الجزائر والعالم العربي.",
+        bioText2: "يمتلك رؤية عميقة لبناء منظومات ذكية ومستدامة تربط بين التعليم الرقمي، الذكاء الاصطناعي، ريادة الأعمال، التصميم والتطوير التكنولوجي، الاقتصاد الإبداعي، والصناعة والخدمات الذكية. يعمل حاليًا على عدة مشاريع استراتيجية، ويُعد مرجعًا صاعدًا في تطوير حلول متكاملة تجمع بين التكنولوجيا والابتكار الاجتماعي، بدافع حقيقي للتغيير.",
+        valueInnovation: "الابتكار",
+        valueLearning: "التعلم",
+        valueImpact: "التأثير",
+        valueCollaboration: "التعاون",
+        valueEntrepreneurship: "ريادة الأعمال",
+        projectsTitle: "المشاريع والمبادرات",
+        projectTitle1: "IL Motors",
+        projectDesc1: "مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية. يشمل ثلاثة نماذج رئيسية: IL-City (سيارة حضرية)، IL-Family (سيارة عائلية)، و IL-Falcon 500 (طراز فاخر رياضي).",
+        projectTitle2: "Infiteach",
+        projectDesc2: "منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ من جميع الأطوار، ودورات مهنية للأساتذة ومراكز التكوين، وبوت ذكي باسم 'نور' يعمل كمساعد دراسي شخصي. مبنية باستخدام Firebase و Google Sheets وتكاملات ChatGPT.",
+        projectTitle3: "SYNAPSE",
+        projectDesc3: "نادي علمي متعدد التخصصات تم إنشاؤه داخل المركز العلمي الترفيهي باتنة، يجمع الطلبة والباحثين في الذكاء الاصطناعي، الطب، الكيمياء، الاقتصاد، الإلكترونيات، علم الحيوان، والفن والتصميم.",
+        projectTitle4: "INFINITELOGIC",
+        projectDesc4: "فريق شبابي جزائري تحت قيادتي، يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم الجرافيكي والموشن، تطوير المواقع والأنظمة، إعداد محتوى تسويقي وتربوي ذكي، والتحليل السوقي.",
+        projectTitle5: "قضية فندق كوادرا",
+        projectDesc5: "لعبة تحقيق تفاعلية غامضة، تمزج بين الرواية البوليسية، الواقع الافتراضي، والتصميم التجريبي. تدور أحداثها في الجزائر، وتحتوي على وثائق حقيقية، أدلة مادية (USB، صور)، وألغاز مشفّرة.",
+        projectTitle6: "Noor Bot",
+        projectDesc6: "مساعد أكاديمي ذكي مصمم لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek لمواءمة المناهج الرسمية. يقدم دعمًا شخصيًا فوريًا للتلاميذ حسب البرنامج الرسمي الجزائري.",
+        details: "تفاصيل",
+        website: "الموقع",
+        experience: "تجربة",
+        tagIndustry: "صناعة",
+        tagElectricCars: "سيارات كهربائية",
+        tagAI: "ذكاء اصطناعي",
+        tagEducation: "تعليم",
+        tagDigitalPlatform: "منصة رقمية",
+        tagScience: "علوم",
+        tagResearch: "بحث",
+        tagDesign: "تصميم",
+        tagDevelopment: "تطوير",
+        tagMarketing: "تسويق",
+        tagGame: "لعبة",
+        tagInteractive: "تفاعلية",
+        tagCreativity: "إبداع",
+        tagTelegram: "تلغرام",
+        skillsTitle: "المهارات الأساسية",
+        skillsCategory1: "الذكاء الاصطناعي والمنصات",
+        skillsCategory2: "تطوير وتصميم",
+        skillsCategory3: "الإعلام والمحتوى",
+        skillsCategory4: "إدارة واستراتيجية",
+        skillsCategory5: "التعليم والتكوين",
+        skillsCategory6: "تقنيات وأجهزة",
+        skillPhotography: "التصوير الفوتوغرافي",
+        skillStorytelling: "رواية القصص المرئية",
+        skillArtDirection: "الإخراج الفني",
+        skillLeadership: "قيادة الفريق",
+        skillAnalysis: "التحليل السوقي",
+        skillBranding: "بناء العلامة التجارية",
+        skillPlanning: "التخطيط الاستراتيجي",
+        skillManagement: "إدارة المشاريع",
+        skillInnovation: "الابتكار الاجتماعي",
+        skillPlatforms: "المنصات التعليمية",
+        skillContent: "تصميم المحتوى",
+        skillDistance: "التعلم عن بعد",
+        skillMedia: "الوسائط التعليمية",
+        skillEvaluation: "تقييم الأداء",
+        testimonialsTitle: "التوصيات والتعاونات",
+        testimonial1: "العمل مع زين الدين كان تجربة محولة. رؤيته للذكاء الاصطناعي وتطبيقاته في التعليم ألهمت فريقنا بأكمله لإعادة التفكير في نهجنا.",
+        testimonial2: "زين الدين ليس فقط مبتكرًا تقنيًا، بل هو قائد ملهم يجمع بين المعرفة العميقة والقدرة على تحفيز الآخرين. مشاريعه مع IL Motors و Infiteach تثبت ذلك.",
+        testimonial3: "كطالبة في نادي SYNAPSE، تعلمت من زين الدين كيفية تطبيق المفاهيم العلمية في حل المشكلات الواقعية. أسلوبه في التعليم يجعل المعقد بسيطًا ومثيرًا للاهتمام.",
+        author1Name: "د. أحمد محمد",
+        author1Position: "مدير مركز التعليم الرقمي",
+        author2Name: "سارة بن علي",
+        author2Position: "شريكة مؤسسة، INFINITELOGIC",
+        author3Name: "سومية خليفي",
+        author3Position: "طالبة، نادي SYNAPSE",
+        timelineTitle: "الجدول الزمني",
+        timelineItem1: "تأسيس نادي SYNAPSE",
+        timelineDesc1: "تأسيس نادي علمي متعدد التخصصات داخل المركز العلمي الترفيهي باتنة لجمع الطلبة والباحثين في مجالات علمية متنوعة.",
+        timelineItem2: "تطوير Noor Bot",
+        timelineDesc2: "تطوير مساعد أكاديمي ذكي لطلاب البكالوريا الجزائريين باستخدام تكاملات ChatGPT و Gemini و DeepSeek.",
+        timelineItem3: "إطلاق Infiteach",
+        timelineDesc3: "إطلاق منصة تعليمية رقمية ذكية تشمل دروس دعم للتلاميذ ودورات مهنية للأساتذة وبوت ذكي باسم 'نور'.",
+        timelineItem4: "تأسيس INFINITELOGIC",
+        timelineDesc4: "تأسيس فريق شبابي جزائري يقدم خدمات احترافية في العروض التقديمية الإبداعية، التصميم، التطوير، وحلول التسويق الذكية.",
+        timelineItem5: "إطلاق IL Motors",
+        timelineDesc5: "إطلاق مشروع صناعي جريء يهدف إلى تصميم وإنتاج سلسلة سيارات كهربائية ذكية موجهة للسوق المحلية والعالمية.",
+        contactTitle: "تواصل معي",
+        contactInfo: "معلومات التواصل",
+        location: "باتنة، الجزائر",
+        downloadCV: "تحميل السيرة الذاتية",
+        sendMessage: "أرسل لي رسالة",
+        namePlaceholder: "الاسم",
+        emailPlaceholder: "البريد الإلكتروني",
+        subjectPlaceholder: "الموضوع",
+        messagePlaceholder: "الرسالة",
+        sendButton: "إرسال الرسالة",
+        footerText: "شاب جزائري طموح، متعدد التخصصات، ومبادر من الطراز العالي. أسعى لإحداث أثر ملموس في التعليم، التكنولوجيا، الصناعة الإبداعية، والتنمية المجتمعية في الجزائر والعالم العربي."
+      },
+      en: {
+        navHome: "Home",
+        navBio: "Biography",
+        navProjects: "Projects",
+        navSkills: "Skills",
+        navTestimonials: "Testimonials",
+        navTimeline: "Timeline",
+        navContact: "Contact",
+        heroTitle: "Bendaas Zin Eddine (Tuto)",
+        heroSubtitle: "Future Maker | Multidisciplinary Entrepreneur | Smart Solutions Engineer",
+        heroDescription: "I build smart and sustainable systems that connect digital education, artificial intelligence, entrepreneurship, and technological design in Algeria and the Arab world.",
+        contactMe: "Contact Me",
+        exploreProjects: "Explore My Projects",
+        bioTitle: "Who is Tuto?",
+        bioName: "Bendaas Zin Eddine (Tuto)",
+        bioText1: "An ambitious Algerian youth, multidisciplinary and highly proactive. Born with an entrepreneurial and technological spirit, he seeks to make a tangible impact in education, technology, the creative industry, and community development in Algeria and the Arab world.",
+        bioText2: "Possesses a deep vision for building smart and sustainable systems that connect digital education, artificial intelligence, entrepreneurship, technological design and development, the creative economy, and smart industry and services. Currently working on several strategic projects, he is an emerging reference in developing integrated solutions that combine technology and social innovation, driven by a genuine desire for change.",
+        valueInnovation: "Innovation",
+        valueLearning: "Learning",
+        valueImpact: "Impact",
+        valueCollaboration: "Collaboration",
+        valueEntrepreneurship: "Entrepreneurship",
+        projectsTitle: "Projects & Initiatives",
+        projectTitle1: "IL Motors",
+        projectDesc1: "A bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market. Includes three main models: IL-City (urban car), IL-Family (family car), and IL-Falcon 500 (luxury sports model).",
+        projectTitle2: "Infiteach",
+        projectDesc2: "A smart digital educational platform including support lessons for students of all levels, professional courses for teachers and training centers, and a smart bot named 'Noor' that serves as a personal academic assistant. Built using Firebase, Google Sheets and ChatGPT integrations.",
+        projectTitle3: "SYNAPSE",
+        projectDesc3: "A multidisciplinary scientific club created within the Batna Science and Entertainment Center, bringing together students and researchers in artificial intelligence, medicine, chemistry, economics, electronics, zoology, and art and design.",
+        projectTitle4: "INFINITELOGIC",
+        projectDesc4: "An Algerian youth team under my leadership, providing professional services in creative presentations, graphic and motion design, website and system development, smart marketing and educational content preparation, and market analysis.",
+        projectTitle5: "Quadra Hotel Case",
+        projectDesc5: "A mysterious interactive investigation game that blends detective fiction, virtual reality, and experimental design. Set in Algeria, it features real documents, physical evidence (USB, photos), and encrypted puzzles.",
+        projectTitle6: "Noor Bot",
+        projectDesc6: "A smart academic assistant designed for Algerian baccalaureate students using ChatGPT, Gemini and DeepSeek integrations aligned with official curricula. Provides instant personalized support to students according to the official Algerian program.",
+        details: "Details",
+        website: "Website",
+        experience: "Experience",
+        tagIndustry: "Industry",
+        tagElectricCars: "Electric Cars",
+        tagAI: "Artificial Intelligence",
+        tagEducation: "Education",
+        tagDigitalPlatform: "Digital Platform",
+        tagScience: "Science",
+        tagResearch: "Research",
+        tagDesign: "Design",
+        tagDevelopment: "Development",
+        tagMarketing: "Marketing",
+        tagGame: "Game",
+        tagInteractive: "Interactive",
+        tagCreativity: "Creativity",
+        tagTelegram: "Telegram",
+        skillsTitle: "Core Skills",
+        skillsCategory1: "AI & Platforms",
+        skillsCategory2: "Development & Design",
+        skillsCategory3: "Media & Content",
+        skillsCategory4: "Management & Strategy",
+        skillsCategory5: "Education & Training",
+        skillsCategory6: "Technologies & Devices",
+        skillPhotography: "Photography",
+        skillStorytelling: "Visual Storytelling",
+        skillArtDirection: "Art Direction",
+        skillLeadership: "Team Leadership",
+        skillAnalysis: "Market Analysis",
+        skillBranding: "Brand Building",
+        skillPlanning: "Strategic Planning",
+        skillManagement: "Project Management",
+        skillInnovation: "Social Innovation",
+        skillPlatforms: "Educational Platforms",
+        skillContent: "Content Design",
+        skillDistance: "Distance Learning",
+        skillMedia: "Educational Media",
+        skillEvaluation: "Performance Evaluation",
+        testimonialsTitle: "Testimonials & Collaborations",
+        testimonial1: "Working with Zin Eddine was a transformative experience. His vision for artificial intelligence and its applications in education inspired our entire team to rethink our approach.",
+        testimonial2: "Zin Eddine is not only a technical innovator but also an inspiring leader who combines deep knowledge with the ability to motivate others. His projects with IL Motors and Infiteach prove this.",
+        testimonial3: "As a student in the SYNAPSE club, I learned from Zin Eddine how to apply scientific concepts to solve real-world problems. His teaching style makes complex subjects simple and interesting.",
+        author1Name: "Dr. Ahmed Mohamed",
+        author1Position: "Director of Digital Education Center",
+        author2Name: "Sara Ben Ali",
+        author2Position: "Co-founder, INFINITELOGIC",
+        author3Name: "Sumaya Khalifi",
+        author3Position: "Student, SYNAPSE Club",
+        timelineTitle: "Timeline",
+        timelineItem1: "Establishment of SYNAPSE Club",
+        timelineDesc1: "Establishment of a multidisciplinary scientific club within the Batna Science and Entertainment Center to bring together students and researchers in various scientific fields.",
+        timelineItem2: "Development of Noor Bot",
+        timelineDesc2: "Development of a smart academic assistant for Algerian baccalaureate students using ChatGPT, Gemini and DeepSeek integrations.",
+        timelineItem3: "Launch of Infiteach",
+        timelineDesc3: "Launch of a smart digital educational platform including support lessons for students, professional courses for teachers, and a smart bot named 'Noor'.",
+        timelineItem4: "Establishment of INFINITELOGIC",
+        timelineDesc4: "Establishment of an Algerian youth team providing professional services in creative presentations, design, development, and smart marketing solutions.",
+        timelineItem5: "Launch of IL Motors",
+        timelineDesc5: "Launch of a bold industrial project aimed at designing and producing a series of smart electric cars for the local and global market.",
+        contactTitle: "Contact Me",
+        contactInfo: "Contact Information",
+        location: "Batna, Algeria",
+        downloadCV: "Download CV",
+        sendMessage: "Send Me a Message",
+        namePlaceholder: "Name",
+        emailPlaceholder: "Email",
+        subjectPlaceholder: "Subject",
+        messagePlaceholder: "Message",
+        sendButton: "Send Message",
+        footerText: "An ambitious Algerian youth, multidisciplinary and highly proactive. I strive to make a tangible impact in education, technology, the creative industry, and community development in Algeria and the Arab world."
+      },
+      fr: {
+        navHome: "Accueil",
+        navBio: "Biographie",
+        navProjects: "Projets",
+        navSkills: "Compétences",
+        navTestimonials: "Témoignages",
+        navTimeline: "Chronologie",
+        navContact: "Contact",
+        heroTitle: "Bendaas Zin Eddine (Tuto)",
+        heroSubtitle: "Faiseur de futur | Entrepreneur multidisciplinaire | Ingénieur en solutions intelligentes",
+        heroDescription: "Je construis des systèmes intelligents et durables qui relient l'éducation numérique, l'intelligence artificielle, l'entrepreneuriat et la conception technologique en Algérie et dans le monde arabe.",
+        contactMe: "Contactez-moi",
+        exploreProjects: "Explorer mes projets",
+        bioTitle: "Qui est Tuto?",
+        bioName: "Bendaas Zin Eddine (Tuto)",
+        bioText1: "Jeune algérien ambitieux, multidisciplinaire et très proactif. Né avec un esprit entrepreneurial et technologique, il cherche à avoir un impact tangible dans l'éducation, la technologie, l'industrie créative et le développement communautaire en Algérie et dans le monde arabe.",
+        bioText2: "Possède une vision profonde pour construire des systèmes intelligents et durables qui relient l'éducation numérique, l'intelligence artificielle, l'entrepreneuriat, la conception et le développement technologique, l'économie créative, et l'industrie et les services intelligents. Travaillant actuellement sur plusieurs projets stratégiques, il est une référence émergente dans le développement de solutions intégrées combinant technologie et innovation sociale, motivé par un véritable désir de changement.",
+        valueInnovation: "Innovation",
+        valueLearning: "Apprentissage",
+        valueImpact: "Impact",
+        valueCollaboration: "Collaboration",
+        valueEntrepreneurship: "Entrepreneuriat",
+        projectsTitle: "Projets & Initiatives",
+        projectTitle1: "IL Motors",
+        projectDesc1: "Un projet industriel audacieux visant à concevoir et produire une série de voitures électriques intelligentes pour le marché local et mondial. Comprend trois modèles principaux : IL-City (voiture urbaine), IL-Family (voiture familiale) et IL-Falcon 500 (modèle sportif de luxe).",
+        projectTitle2: "Infiteach",
+        projectDesc2: "Une plateforme éducative numérique intelligente comprenant des cours de soutien pour les élèves de tous niveaux, des cours professionnels pour les enseignants et les centres de formation, et un bot intelligent nommé 'Noor' servant d'assistant académique personnel. Construit avec Firebase, Google Sheets et des intégrations ChatGPT.",
+        projectTitle3: "SYNAPSE",
+        projectDesc3: "Un club scientifique multidisciplinaire créé au sein du Centre Scientifique et de Loisirs de Batna, rassemblant étudiants et chercheurs en intelligence artificielle, médecine, chimie, économie, électronique, zoologie, et art et design.",
+        projectTitle4: "INFINITELOGIC",
+        projectDesc4: "Une équipe de jeunes algériens sous ma direction, offrant des services professionnels en présentations créatives, design graphique et motion, développement de sites web et systèmes, préparation de contenu marketing et éducatif intelligent, et analyse de marché.",
+        projectTitle5: "Affaire de l'hôtel Quadra",
+        projectDesc5: "Un jeu d'enquête interactif mystérieux qui mêle fiction policière, réalité virtuelle et design expérimental. Situé en Algérie, il présente des documents réels, des preuves physiques (clé USB, photos) et des énigmes cryptées.",
+        projectTitle6: "Noor Bot",
+        projectDesc6: "Un assistant académique intelligent conçu pour les étudiants algériens du baccalauréat utilisant des intégrations ChatGPT, Gemini et DeepSeek alignées sur les programmes officiels. Fournit un soutien personnalisé instantané aux élèves selon le programme officiel algérien.",
+        details: "Détails",
+        website: "Site Web",
+        experience: "Expérience",
+        tagIndustry: "Industrie",
+        tagElectricCars: "Voitures électriques",
+        tagAI: "Intelligence Artificielle",
+        tagEducation: "Éducation",
+        tagDigitalPlatform: "Plateforme numérique",
+        tagScience: "Science",
+        tagResearch: "Recherche",
+        tagDesign: "Design",
+        tagDevelopment: "Développement",
+        tagMarketing: "Marketing",
+        tagGame: "Jeu",
+        tagInteractive: "Interactif",
+        tagCreativity: "Créativité",
+        tagTelegram: "Telegram",
+        skillsTitle: "Compétences clés",
+        skillsCategory1: "IA & Plateformes",
+        skillsCategory2: "Développement & Design",
+        skillsCategory3: "Médias & Contenu",
+        skillsCategory4: "Gestion & Stratégie",
+        skillsCategory5: "Éducation & Formation",
+        skillsCategory6: "Technologies & Appareils",
+        skillPhotography: "Photographie",
+        skillStorytelling: "Narration visuelle",
+        skillArtDirection: "Direction artistique",
+        skillLeadership: "Leadership d'équipe",
+        skillAnalysis: "Analyse de marché",
+        skillBranding: "Construction de marque",
+        skillPlanning: "Planification stratégique",
+        skillManagement: "Gestion de projet",
+        skillInnovation: "Innovation sociale",
+        skillPlatforms: "Plateformes éducatives",
+        skillContent: "Conception de contenu",
+        skillDistance: "Apprentissage à distance",
+        skillMedia: "Médias éducatifs",
+        skillEvaluation: "Évaluation de la performance",
+        testimonialsTitle: "Témoignages & Collaborations",
+        testimonial1: "Travailler avec Zin Eddine a été une expérience transformatrice. Sa vision de l'intelligence artificielle et de ses applications dans l'éducation a inspiré toute notre équipe à repenser notre approche.",
+        testimonial2: "Zin Eddine n'est pas seulement un innovateur technique, mais aussi un leader inspirant qui allie des connaissances approfondies à la capacité de motiver les autres. Ses projets avec IL Motors et Infiteach le prouvent.",
+        testimonial3: "En tant qu'étudiante du club SYNAPSE, j'ai appris de Zin Eddine comment appliquer des concepts scientifiques pour résoudre des problèmes réels. Son style d'enseignement rend les sujets complexes simples et intéressants.",
+        author1Name: "Dr. Ahmed Mohamed",
+        author1Position: "Directeur du Centre d'Éducation Numérique",
+        author2Name: "Sara Ben Ali",
+        author2Position: "Co-fondatrice, INFINITELOGIC",
+        author3Name: "Sumaya Khalifi",
+        author3Position: "Étudiante, Club SYNAPSE",
+        timelineTitle: "Chronologie",
+        timelineItem1: "Création du club SYNAPSE",
+        timelineDesc1: "Création d'un club scientifique multidisciplinaire au sein du Centre Scientifique et de Loisirs de Batna pour rassembler étudiants et chercheurs dans divers domaines scientifiques.",
+        timelineItem2: "Développement de Noor Bot",
+        timelineDesc2: "Développement d'un assistant académique intelligent pour les étudiants algériens du baccalauréat utilisant des intégrations ChatGPT, Gemini et DeepSeek.",
+        timelineItem3: "Lancement d'Infiteach",
+        timelineDesc3: "Lancement d'une plateforme éducative numérique intelligente comprenant des cours de soutien pour les élèves, des cours professionnels pour les enseignants et un bot intelligent nommé 'Noor'.",
+        timelineItem4: "Création d'INFINITELOGIC",
+        timelineDesc4: "Création d'une équipe de jeunes algériens offrant des services professionnels en présentations créatives, design, développement et solutions marketing intelligentes.",
+        timelineItem5: "Lancement d'IL Motors",
+        timelineDesc5: "Lancement d'un projet industriel audacieux visant à concevoir et produire une série de voitures électriques intelligentes pour le marché local et mondial.",
+        contactTitle: "Contactez-moi",
+        contactInfo: "Informations de contact",
+        location: "Batna, Algérie",
+        downloadCV: "Télécharger le CV",
+        sendMessage: "Envoyez-moi un message",
+        namePlaceholder: "Nom",
+        emailPlaceholder: "Email",
+        subjectPlaceholder: "Sujet",
+        messagePlaceholder: "Message",
+        sendButton: "Envoyer le message",
+        footerText: "Jeune algérien ambitieux, multidisciplinaire et très proactif. Je m'efforce d'avoir un impact tangible dans l'éducation, la technologie, l'industrie créative et le développement communautaire en Algérie et dans le monde arabe."
+      }
+    };
+
+    // تهيئة اللغة الافتراضية
+    let currentLanguage = 'ar';
+    const langSelect = document.getElementById('current-lang');
+
+    // وظيفة تغيير اللغة
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      
+      // تحديث نص زر التبديل
+      if (lang === 'ar') {
+        langSelect.textContent = 'العربية';
+      } else if (lang === 'en') {
+        langSelect.textContent = 'English';
+      } else if (lang === 'fr') {
+        langSelect.textContent = 'Français';
+      }
+      
+      // تحديث جميع العناصر التي تحتوي على data-key
+      const elements = document.querySelectorAll('[data-key]');
+      elements.forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (translations[lang][key]) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = translations[lang][key];
+          } else {
+            element.textContent = translations[lang][key];
+          }
+        }
+      });
+      
+      // تحديث حالة العناصر النشطة في القائمة المنسدلة
+      document.querySelectorAll('.lang-option').forEach(option => {
+        if (option.getAttribute('data-lang') === lang) {
+          option.classList.add('active');
+        } else {
+          option.classList.remove('active');
+        }
+      });
+      
+      // تحديث اتجاه الصفحة
+      if (lang === 'ar') {
+        document.documentElement.dir = 'rtl';
+      } else {
+        document.documentElement.dir = 'ltr';
+      }
+    }
+
+    // تهيئة تغيير اللغة عند النقر على الخيارات
+    document.querySelectorAll('.lang-option').forEach(option => {
+      option.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.getAttribute('data-lang');
+        changeLanguage(lang);
+      });
+    });
+
     // Initialize Particles
     particlesJS('particles-js', {
       "particles": {
@@ -1583,67 +2285,88 @@
       },
       "retina_detect": true
     });
-    // Language Toggle
-    let currentLang = 'en';
     
-    function toggleLanguage() {
-      const languages = ['en', 'ar', 'fr'];
-      const currentIndex = languages.indexOf(currentLang);
-      currentLang = languages[(currentIndex + 1) % languages.length];
-      
-      document.documentElement.lang = currentLang;
-      
-      // Update button text
-      if (currentLang === 'en') {
-        document.querySelector('.lang-toggle').textContent = 'العربية';
-      } else if (currentLang === 'ar') {
-        document.querySelector('.lang-toggle').textContent = 'Français';
-      } else {
-        document.querySelector('.lang-toggle').textContent = 'English';
-      }
-      
-      // Update all elements with data-en, data-ar, and data-fr attributes
-      document.querySelectorAll('[data-en]').forEach(element => {
-        const text = element.getAttribute(`data-${currentLang}`);
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-          element.placeholder = text;
-        } else {
-          element.textContent = text;
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1200: {
+          slidesPerView: 3,
         }
-      });
-      
-      // Update placeholder attributes
-      document.querySelectorAll('[data-en-placeholder]').forEach(element => {
-        const placeholder = element.getAttribute(`data-${currentLang}-placeholder`);
-        element.placeholder = placeholder;
-      });
-    }
+      }
+    });
+    
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+        
         document.querySelector(this.getAttribute('href')).scrollIntoView({
           behavior: 'smooth'
         });
       });
     });
-    // Form Submission (Placeholder)
+    
+    // Scroll to Top Button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Form Submission
     document.querySelector('form').addEventListener('submit', function(e) {
       e.preventDefault();
-      let successMessage = '';
-      
-      if (currentLang === 'en') {
-        successMessage = 'Thank you for your message! I will get back to you soon.';
-      } else if (currentLang === 'ar') {
-        successMessage = 'شكراً لتواصلك! سيتم الرد عليك قريباً.';
-      } else {
-        successMessage = 'Merci pour votre message! Je vous répondrai bientôt.';
-      }
-      
-      alert(successMessage);
+      alert(currentLanguage === 'ar' ? 'شكراً لتواصلك! سيتم الرد عليك قريباً.' : 
+            currentLanguage === 'en' ? 'Thank you for your message! We will get back to you soon.' :
+            'Merci pour votre message ! Nous vous répondrons bientôt.');
       this.reset();
     });
-    // Intersection Observer for section animations
+    
+    // Intersection Observer for Animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1652,9 +2375,11 @@
         }
       });
     }, { threshold: 0.1 });
+    
     document.querySelectorAll('.section').forEach(section => {
       observer.observe(section);
     });
+    
     // Animate skills when they come into view
     const skillObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1668,27 +2393,9 @@
         }
       });
     }, { threshold: 0.1 });
+    
     document.querySelectorAll('.skill-category').forEach(category => {
       skillObserver.observe(category);
-    });
-    // Add Active Class to Navigation Links on Scroll
-    window.addEventListener('scroll', () => {
-      let current = '';
-      const sections = document.querySelectorAll('section');
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-          current = section.getAttribute('id');
-        }
-      });
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-          link.classList.add('active');
-        }
-      });
     });
     
     // Initialize animations for footer
